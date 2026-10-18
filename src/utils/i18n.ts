@@ -45,9 +45,8 @@ export const getBasePathname = (pathname: string): string => {
 export const getLocalizedPathname = (pathname: string, locale: Locale): string => {
   const basePathname = getBasePathname(pathname);
 
-  // The 404 page is shared by both locales; point the switcher at each locale's home.
   if (basePathname === '/404' || basePathname === '/404.html') {
-    return locale === 'zh' ? '/zh' : '/';
+    return locale === 'zh' ? '/zh/404' : '/404';
   }
 
   if (locale === 'en') return basePathname;

@@ -28,7 +28,9 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      filter: (page) => !/\/404(?:\/|$)/.test(page),
+    }),
     mdx(),
     icon({
       include: {

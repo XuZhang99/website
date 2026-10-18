@@ -1,0 +1,15 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import NotFound from '~/components/widgets/NotFound.astro';
+
+const metadata = {
+  title: '页面未找到',
+  description: '未找到该页面。请返回首页或前往文档。',
+  robots: { index: false },
+  openGraph: { locale: 'zh_CN' },
+};
+---
+
+<Layout metadata={metadata} locale="zh">
+  <NotFound locale="zh" />
+</Layout>
