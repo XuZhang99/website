@@ -2,6 +2,8 @@
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
 import Header from '~/components/widgets/Header.astro';
+import InferenceFlow from '~/components/widgets/InferenceFlow.astro';
+import SupportGroup from '~/components/widgets/SupportGroup.astro';
 import Button from '~/components/ui/Button.astro';
 import { headerData } from '~/navigation';
 
@@ -10,40 +12,43 @@ const metadata = {
   ignoreTitleTemplate: true,
 };
 
-const hardwareSupport = [
+const resources = [
   {
-    name: 'Ascend NPUs',
+    title: 'Documentation',
+    description: 'Set up your environment and launch your first model.',
+    href: 'https://docs.xllm-ai.com/en/',
+    icon: 'tabler:book-2',
   },
   {
-    name: 'Cambricon MLUs',
+    title: 'Publications',
+    description: 'Explore the research and engineering behind xLLM.',
+    href: '/publications',
+    icon: 'tabler:file-text',
   },
   {
-    name: 'Iluvatar CoreX GPUs',
-  },
-  {
-    name: 'Moore Threads GPUs',
+    title: 'Docker images',
+    description: 'Find published images for deployment and development.',
+    href: 'https://quay.io/repository/jd_xllm/xllm-ai?tab=tags',
+    icon: 'tabler:brand-docker',
   },
 ];
 
+const hardwareSupport = [
+  { name: 'Ascend', logo: '/images/brands/ascend.png' },
+  { name: 'Cambricon', logo: '/images/brands/cambricon.ico' },
+  { name: 'NVIDIA', logo: '/images/brands/nvidia.svg' },
+  { name: 'Iluvatar CoreX', logo: '/images/brands/iluvatar.png' },
+  { name: 'Moore Threads', logo: '/images/brands/moore-threads.png' },
+  { name: 'Hygon', logo: '/images/brands/hygon.ico' },
+];
+
 const modelSupport = [
-  {
-    name: 'DeepSeek',
-  },
-  {
-    name: 'Qwen',
-  },
-  {
-    name: 'Kimi',
-  },
-  {
-    name: 'GLM',
-  },
-  {
-    name: 'Flux',
-  },
-  {
-    name: 'OneRec',
-  },
+  { name: 'DeepSeek', logo: '/images/brands/deepseek.svg' },
+  { name: 'Qwen', logo: '/images/brands/qwen.svg' },
+  { name: 'Kimi', logo: '/images/brands/kimi.svg' },
+  { name: 'GLM', logo: '/images/brands/glm.svg' },
+  { name: 'Flux', logo: '/images/brands/flux.svg' },
+  { name: 'OneRec', monogram: '1R' },
 ];
 ---
 
@@ -53,68 +58,68 @@ const modelSupport = [
   </Fragment>
 
   <section class="relative -mt-[76px] 2xl:-mt-[85px] not-prose">
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(235,39,0,0.16),transparent_50%),radial-gradient(circle_at_80%_22%,rgba(235,39,0,0.16),transparent_52%),linear-gradient(to_bottom,rgba(235,39,0,0.08),rgba(248,250,252,0.92))] dark:bg-[radial-gradient(circle_at_top,rgba(235,39,0,0.18),transparent_50%),radial-gradient(circle_at_80%_22%,rgba(235,39,0,0.18),transparent_52%),linear-gradient(to_bottom,#080808,#080808)]"
-      >
-      </div>
-    </div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
       <div class="pointer-events-none pt-[76px] 2xl:pt-[85px]"></div>
-      <div class="py-16 md:py-24 lg:py-28">
-        <div class="scroll-fade-stagger mx-auto max-w-4xl text-center">
-          <img src="/images/logo.png" alt="xLLM logo" class="mx-auto h-28 w-auto" />
-          <h1 class="mt-3 text-3xl font-bold leading-tight tracking-tight text-heading md:text-3xl dark:text-white">
-            The <span class="font-extrabold text-[#EB2700]">High-Performance</span> Inference Framework for
-            <span class="font-extrabold text-[#EB2700]">LLM, VLM, DiT and REC</span> Models on Heterogeneous Accelerators
+      <div class="pb-12 pt-10 md:pb-16 md:pt-14 lg:pt-16">
+        <div class="scroll-fade-stagger mx-auto max-w-6xl text-center">
+          <img src="/images/logo.png" alt="xLLM" class="mx-auto h-32 w-auto md:h-48" width="3194" height="1705" />
+          <h1
+            class="mt-6 text-2xl font-semibold leading-tight tracking-tight text-heading sm:text-3xl lg:text-[2.5rem] lg:leading-tight dark:text-white"
+          >
+            <span class="block">High-performance inference.</span>
+            <span class="mt-2 block text-primary">Across heterogeneous accelerators.</span>
           </h1>
-          <div class="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <p class="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-muted sm:text-lg">
+            A unified framework for <strong class="font-bold text-primary">LLM</strong>, <strong
+              class="font-bold text-primary">VLM</strong
+            >, <strong class="font-bold text-primary">DiT</strong>, and <strong class="font-bold text-primary"
+              >REC</strong
+            >
+            models. Built for efficient inference across diverse AI hardware.
+          </p>
+          <div class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <Button
               variant="primary"
               text="Get Started"
               href="https://docs.xllm-ai.com/en/getting_started/quick_start/"
               target="_blank"
               icon="tabler:book-2"
-              class="border-[#EB2700] bg-[#EB2700] text-white hover:border-[#EB2700] hover:bg-[#EB2700] dark:border-[#EB2700] dark:bg-[#EB2700] dark:hover:border-[#EB2700] dark:hover:bg-[#EB2700]"
             />
+            <Button text="Explore support" href="#support" icon="tabler:arrow-down" />
           </div>
         </div>
 
+        <InferenceFlow />
+
         <div class="scroll-fade-stagger mx-auto mt-12 grid max-w-6xl gap-4 md:grid-cols-3">
-          <div
-            class="rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
-          >
+          <div class="border-t border-neutral-200 px-2 py-6 dark:border-neutral-800">
             <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:circle-check" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
+              <Icon name="tabler:circle-check" class="h-5 w-5 text-accent" />
               Easy
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
-              Deploy mainstream open models on supported accelerators with a unified service-engine stack and
-              production-oriented tooling.
+              Bring models into your applications with OpenAI-compatible and Anthropic-compatible APIs for online
+              serving.
             </p>
           </div>
-          <div
-            class="rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
-          >
+          <div class="border-t border-neutral-200 px-2 py-6 dark:border-neutral-800">
             <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:bolt" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
+              <Icon name="tabler:bolt" class="h-5 w-5 text-accent" />
               Fast
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
-              Improve throughput with asynchronous scheduling, graph optimization, multi-stream execution, and dynamic
-              load balancing.
+              Keep accelerators busy with continuous batching, task pipelining, and graph execution to reduce runtime
+              overhead and improve throughput.
             </p>
           </div>
-          <div
-            class="rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
-          >
+          <div class="border-t border-neutral-200 px-2 py-6 dark:border-neutral-800">
             <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:coins" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
+              <Icon name="tabler:coins" class="h-5 w-5 text-accent" />
               Cost Efficient
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
-              Reduce inference cost through hardware-aware optimization, efficient memory management, and global KV
-              cache control.
+              Reuse prompt prefixes and extend KV caching across device memory, host memory, and distributed storage to
+              reduce repeated computation and memory pressure.
             </p>
           </div>
         </div>
@@ -122,205 +127,114 @@ const modelSupport = [
     </div>
   </section>
 
-  <section id="support" class="not-prose">
+  <section id="support" class="not-prose border-y border-neutral-200/70 bg-page dark:border-neutral-800">
     <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
       <div class="scroll-fade mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]">Broad Support</p>
+        <p class="text-sm font-semibold uppercase tracking-wide text-accent">Broad Support</p>
         <h2 class="mt-3 text-2xl font-bold tracking-tight text-heading md:text-3xl dark:text-white">
           Cross-Platform Model & Hardware Support
         </h2>
-        <p class="mt-3 text-base text-muted md:text-lg">
-          xLLM supports mainstream open models across heterogeneous accelerator targets.
-        </p>
       </div>
 
-      <div class="scroll-fade-stagger mx-auto mt-8 grid max-w-6xl items-stretch gap-5 lg:grid-cols-2">
-        <article
-          class="flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
-        >
-          <div class="text-center">
-            <p
-              class="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]"
-            >
-              <Icon name="tabler:server-2" class="h-4 w-4" />
-              Supported Hardware
-            </p>
-          </div>
-
-          <ul class="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-            {
-              hardwareSupport.map((item) => (
-                <li class="flex min-h-12 items-center justify-center rounded-[8px] border border-slate-200/80 bg-slate-50/80 px-3.5 py-2 text-center shadow-sm dark:border-slate-700/80 dark:bg-slate-800/50">
-                  <h4 class="text-base font-semibold leading-snug text-heading dark:text-white">{item.name}</h4>
-                </li>
-              ))
-            }
-          </ul>
-
-          <div class="mt-auto flex justify-center pt-5">
-            <a
-              href="https://docs.xllm-ai.com/en/hardware/overview/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
-            >
-              View all supported hardware
-              <Icon
-                name="tabler:arrow-right"
-                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
-              />
-            </a>
-          </div>
-        </article>
-
-        <article
-          class="flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
-        >
-          <div class="text-center">
-            <p
-              class="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]"
-            >
-              <Icon name="tabler:brain" class="h-4 w-4" />
-              Supported Models
-            </p>
-          </div>
-
-          <ul class="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-            {
-              modelSupport.map((item) => (
-                <li class="flex min-h-12 items-center justify-center rounded-[8px] border border-slate-200/80 bg-slate-50/80 px-3.5 py-2 text-center shadow-sm dark:border-slate-700/80 dark:bg-slate-800/50">
-                  <h4 class="text-base font-semibold leading-snug text-heading dark:text-white">{item.name}</h4>
-                </li>
-              ))
-            }
-          </ul>
-
-          <div class="mt-auto flex justify-center pt-5">
-            <a
-              href="https://docs.xllm-ai.com/en/supported_models/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
-            >
-              View all supported models
-              <Icon
-                name="tabler:arrow-right"
-                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
-              />
-            </a>
-          </div>
-        </article>
+      <div class="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-2 lg:gap-0">
+        <SupportGroup
+          title="Supported hardware"
+          icon="tabler:server-2"
+          items={hardwareSupport}
+          columns={3}
+          href="https://docs.xllm-ai.com/en/hardware/overview/"
+          linkText="View all supported hardware"
+        />
+        <SupportGroup
+          title="Supported models"
+          icon="tabler:brain"
+          items={modelSupport}
+          columns={3}
+          href="https://docs.xllm-ai.com/en/supported_models/"
+          linkText="View all supported models"
+          divided
+        />
       </div>
     </div>
   </section>
 
-  <section id="community" class="not-prose">
-    <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
-      <div class="scroll-fade mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]">Got Questions?</p>
-        <h2 class="mt-3 text-2xl font-bold tracking-tight text-heading md:text-3xl dark:text-white">
-          We are here to help
+  <section id="resources" aria-labelledby="resources-heading" class="not-prose">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1fr_1.5fr] md:gap-16 md:py-20">
+      <div class="scroll-fade">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent">Resources</p>
+        <h2
+          id="resources-heading"
+          class="mt-4 text-3xl font-semibold tracking-tight text-heading md:text-4xl dark:text-white"
+        >
+          Build with xLLM.
         </h2>
-        <p class="mt-3 text-base text-muted md:text-lg">
-          Whether you are getting started or debugging a deployment, the public project resources are the fastest place
-          to continue.
+        <p class="mt-4 max-w-sm text-base leading-relaxed text-muted">
+          From your first deployment to a deeper look at the engine. Start here.
         </p>
       </div>
+      <ul
+        class="scroll-fade divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800"
+      >
+        {
+          resources.map((resource) => (
+            <li>
+              <a
+                href={resource.href}
+                target={resource.href.startsWith('https:') ? '_blank' : undefined}
+                rel={resource.href.startsWith('https:') ? 'noopener noreferrer' : undefined}
+                class="group flex items-center gap-4 rounded-lg px-2 py-6 transition-colors hover:bg-neutral-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary dark:hover:bg-white/5 sm:gap-5"
+              >
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-muted transition-colors group-hover:bg-[#EB2700]/10 group-hover:text-primary dark:bg-white/5">
+                  <Icon name={resource.icon} class="h-5 w-5" />
+                </span>
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold text-heading dark:text-white">{resource.title}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-muted">{resource.description}</p>
+                </div>
+                <Icon
+                  name="tabler:arrow-up-right"
+                  class="h-5 w-5 shrink-0 text-muted transition-colors group-hover:text-primary"
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 
-      <div class="scroll-fade-stagger mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-3">
-        <a
-          href="https://docs.xllm-ai.com/en/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
+  <section id="community" aria-labelledby="community-heading" class="not-prose px-4 pb-16 sm:px-6 md:pb-20">
+    <div
+      class="scroll-fade relative mx-auto flex max-w-7xl flex-col gap-8 overflow-hidden rounded-3xl border border-neutral-200 bg-surface p-7 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:p-12 dark:border-neutral-800"
+    >
+      <div class="max-w-xl">
+        <p class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+          <Icon name="tabler:brand-github" class="h-4 w-4" /> Community
+        </p>
+        <h2
+          id="community-heading"
+          class="mt-4 text-3xl font-semibold tracking-tight text-heading md:text-4xl dark:text-white"
         >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:book-2" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Documentation
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">
-            Setup guides, features, launch flows, and reference material.
-          </p>
-        </a>
-        <a
+          Built in the open.<br />Better together.
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-muted">
+          Ask a question, share an idea, or contribute to the next improvement. Help shape the future of xLLM.
+        </p>
+      </div>
+      <div class="flex shrink-0 flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:flex-col lg:items-stretch">
+        <Button
+          variant="primary"
+          text="Join the conversation"
           href="https://github.com/jd-opensource/xllm/issues"
           target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:message-circle" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            GitHub Issues
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">
-            Bug reports, feature requests, and implementation questions.
-          </p>
-        </a>
-        <a
+          icon="tabler:arrow-up-right"
+        />
+        <Button
+          text="Meet the contributors"
           href="https://github.com/jd-opensource/xllm/graphs/contributors"
           target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:users" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Contributors
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">
-            See the developers and maintainers contributing to the project.
-          </p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="resources" class="not-prose">
-    <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
-      <div class="scroll-fade mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]">Resources</p>
-        <h2 class="mt-3 text-2xl font-bold tracking-tight text-heading md:text-3xl dark:text-white">
-          Explore docs, paper, and releases
-        </h2>
-        <p class="mt-3 text-base text-muted md:text-lg">Core project resources in one place.</p>
-      </div>
-
-      <div class="scroll-fade-stagger mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-3">
-        <a
-          href="https://docs.xllm-ai.com/en/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:book-2" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Documentation
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">Guides, setup instructions, and feature docs.</p>
-        </a>
-        <a
-          href="/publications"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:file-text" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Publications
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">Read xLLM papers, reports, and supporting artifacts.</p>
-        </a>
-        <a
-          href="https://quay.io/repository/jd_xllm/xllm-ai?tab=tags"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:brand-docker" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Docker
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">
-            Use published images as a starting point for deployment and development.
-          </p>
-        </a>
+          icon="tabler:users"
+        />
       </div>
     </div>
   </section>
