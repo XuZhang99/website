@@ -11,6 +11,27 @@ const metadata = {
   ignoreTitleTemplate: true,
 };
 
+const resources = [
+  {
+    title: 'Documentation',
+    description: 'Set up your environment and launch your first model.',
+    href: 'https://docs.xllm-ai.com/en/',
+    icon: 'tabler:book-2',
+  },
+  {
+    title: 'Publications',
+    description: 'Explore the research and engineering behind xLLM.',
+    href: '/publications',
+    icon: 'tabler:file-text',
+  },
+  {
+    title: 'Docker images',
+    description: 'Find published images for deployment and development.',
+    href: 'https://quay.io/repository/jd_xllm/xllm-ai?tab=tags',
+    icon: 'tabler:brand-docker',
+  },
+];
+
 const hardwareSupport = [
   {
     name: 'Ascend NPUs',
@@ -227,113 +248,83 @@ const modelSupport = [
     </div>
   </section>
 
-  <section id="community" class="not-prose">
-    <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
-      <div class="scroll-fade mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]">Got Questions?</p>
-        <h2 class="mt-3 text-2xl font-bold tracking-tight text-heading md:text-3xl dark:text-white">
-          We are here to help
+  <section id="resources" aria-labelledby="resources-heading" class="not-prose">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1fr_1.5fr] md:gap-16 md:py-20">
+      <div class="scroll-fade">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-primary">Resources</p>
+        <h2
+          id="resources-heading"
+          class="mt-4 text-3xl font-semibold tracking-tight text-heading md:text-4xl dark:text-white"
+        >
+          Build with xLLM.
         </h2>
-        <p class="mt-3 text-base text-muted md:text-lg">
-          Whether you are getting started or debugging a deployment, the public project resources are the fastest place
-          to continue.
+        <p class="mt-4 max-w-sm text-base leading-relaxed text-muted">
+          From your first deployment to a deeper look at the engine. Start here.
         </p>
       </div>
-
-      <div class="scroll-fade-stagger mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-3">
-        <a
-          href="https://docs.xllm-ai.com/en/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:book-2" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Documentation
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">
-            Setup guides, features, launch flows, and reference material.
-          </p>
-        </a>
-        <a
-          href="https://github.com/jd-opensource/xllm/issues"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:message-circle" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            GitHub Issues
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">
-            Bug reports, feature requests, and implementation questions.
-          </p>
-        </a>
-        <a
-          href="https://github.com/jd-opensource/xllm/graphs/contributors"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:users" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Contributors
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">
-            See the developers and maintainers contributing to the project.
-          </p>
-        </a>
-      </div>
+      <ul
+        class="scroll-fade divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800"
+      >
+        {
+          resources.map((resource) => (
+            <li>
+              <a
+                href={resource.href}
+                target={resource.href.startsWith('https:') ? '_blank' : undefined}
+                rel={resource.href.startsWith('https:') ? 'noopener noreferrer' : undefined}
+                class="group flex items-center gap-4 rounded-lg px-2 py-6 transition-colors hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary dark:hover:bg-white/5 sm:gap-5"
+              >
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-muted transition-colors group-hover:bg-primary/10 group-hover:text-primary dark:bg-white/5">
+                  <Icon name={resource.icon} class="h-5 w-5" />
+                </span>
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold text-heading dark:text-white">{resource.title}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-muted">{resource.description}</p>
+                </div>
+                <Icon
+                  name="tabler:arrow-up-right"
+                  class="h-5 w-5 shrink-0 text-muted transition-colors group-hover:text-primary"
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
-  <section id="resources" class="not-prose">
-    <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
-      <div class="scroll-fade mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]">Resources</p>
-        <h2 class="mt-3 text-2xl font-bold tracking-tight text-heading md:text-3xl dark:text-white">
-          Explore docs, paper, and releases
+  <section id="community" aria-labelledby="community-heading" class="not-prose px-4 pb-16 sm:px-6 md:pb-20">
+    <div
+      class="scroll-fade relative mx-auto flex max-w-7xl flex-col gap-8 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-7 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:p-12 dark:border-slate-800 dark:bg-neutral-900"
+    >
+      <div class="max-w-xl">
+        <p class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+          <Icon name="tabler:brand-github" class="h-4 w-4" /> Community
+        </p>
+        <h2
+          id="community-heading"
+          class="mt-4 text-3xl font-semibold tracking-tight text-heading md:text-4xl dark:text-white"
+        >
+          Built in the open.<br />Better together.
         </h2>
-        <p class="mt-3 text-base text-muted md:text-lg">Core project resources in one place.</p>
+        <p class="mt-4 text-base leading-relaxed text-muted">
+          Ask a question, share an idea, or contribute to the next improvement. Help shape the future of xLLM.
+        </p>
       </div>
-
-      <div class="scroll-fade-stagger mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-3">
-        <a
-          href="https://docs.xllm-ai.com/en/"
+      <div class="flex shrink-0 flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:flex-col lg:items-stretch">
+        <Button
+          variant="primary"
+          text="Join the conversation"
+          href="https://github.com/jd-opensource/xllm/issues"
           target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:book-2" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Documentation
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">Guides, setup instructions, and feature docs.</p>
-        </a>
-        <a
-          href="/publications"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:file-text" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Publications
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">Read xLLM papers, reports, and supporting artifacts.</p>
-        </a>
-        <a
-          href="https://quay.io/repository/jd_xllm/xllm-ai?tab=tags"
+          icon="tabler:arrow-up-right"
+        />
+        <Button
+          text="Meet the contributors"
+          href="https://github.com/jd-opensource/xllm/graphs/contributors"
           target="_blank"
-          rel="noopener noreferrer"
-          class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
-        >
-          <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:brand-docker" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
-            Docker
-          </h3>
-          <p class="mt-3 text-sm text-muted md:text-base">
-            Use published images as a starting point for deployment and development.
-          </p>
-        </a>
+          icon="tabler:users"
+        />
       </div>
     </div>
   </section>
