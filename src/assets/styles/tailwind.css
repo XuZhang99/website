@@ -57,24 +57,23 @@
   .js-enabled .scroll-fade,
   .js-enabled .scroll-fade-stagger > * {
     opacity: 0;
-    translate: 0 0.75rem;
-    transition-property: opacity, translate, transform, box-shadow, border-color, background-color, color;
-    transition-duration: 460ms, 460ms, 200ms, 200ms, 240ms, 240ms, 240ms;
+    transition-property: opacity, transform, box-shadow, border-color, background-color, color;
+    transition-duration: 680ms, 200ms, 200ms, 240ms, 240ms, 240ms;
     transition-timing-function:
       cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1),
-      cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1),
-      cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: var(--scroll-fade-delay, 0ms), var(--scroll-fade-delay, 0ms), 0ms, 0ms, 0ms, 0ms, 0ms;
+      cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--scroll-fade-delay, 0ms), 0ms, 0ms, 0ms, 0ms, 0ms;
   }
 
   .js-enabled .scroll-fade.is-visible,
-  .js-enabled .scroll-fade-stagger.is-visible > * {
+  .js-enabled .scroll-fade-stagger > .is-visible,
+  .js-enabled .scroll-fade:focus-within,
+  .js-enabled .scroll-fade-stagger > :focus-within {
     opacity: 1;
-    translate: 0 0;
   }
 
   .js-enabled .scroll-fade:not(.is-visible),
-  .js-enabled .scroll-fade-stagger:not(.is-visible) > * {
+  .js-enabled .scroll-fade-stagger > :not(.is-visible) {
     transition-delay: 0ms;
   }
 }
@@ -93,7 +92,6 @@
   .scroll-fade,
   .scroll-fade-stagger > * {
     opacity: 1;
-    translate: 0 0;
     transition: none;
   }
 }

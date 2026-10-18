@@ -269,27 +269,27 @@ import { UI } from 'astrowind:config';
 
   const PageMotion = {
     observer: null,
+    motionPreference: window.matchMedia('(prefers-reduced-motion: reduce)'),
 
     start() {
       document.documentElement.classList.add('js-enabled');
       this.observer?.disconnect();
 
-      const elements = Array.from(document.querySelectorAll('.scroll-fade, .scroll-fade-stagger'));
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      elements.forEach((element) => {
-        if (element.classList.contains('scroll-fade-stagger')) {
-          Array.from(element.children).forEach((child, index) => {
-            child.style.setProperty('--scroll-fade-delay', `${Math.min(index, 6) * 90}ms`);
-          });
-        }
-
-        if (prefersReducedMotion) {
-          element.classList.add('is-visible');
-        }
+      // Observe each card so stacked layouts animate when that card enters view.
+      document.querySelectorAll('.scroll-fade-stagger').forEach((group) => {
+        Array.from(group.children).forEach((child, index) => {
+          child.style.setProperty('--scroll-fade-delay', `${Math.min(index, 6) * 90}ms`);
+        });
       });
 
-      if (prefersReducedMotion || !elements.length) {
+      const elements = Array.from(document.querySelectorAll('.scroll-fade, .scroll-fade-stagger > *'));
+
+      if (this.motionPreference.matches) {
+        elements.forEach((element) => element.classList.add('is-visible'));
+        return;
+      }
+
+      if (!elements.length) {
         return;
       }
 
@@ -299,7 +299,8 @@ import { UI } from 'astrowind:config';
             entry.target.classList.toggle('is-visible', entry.isIntersecting);
           });
         },
-        { threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
+        // Fade at the viewport edges, while the element is still on screen.
+        { threshold: 0, rootMargin: '-64px 0px -64px 0px' }
       );
 
       elements.forEach((element) => {
@@ -310,6 +311,8 @@ import { UI } from 'astrowind:config';
 
   Observer.start();
   PageMotion.start();
+  PageMotion.motionPreference.addEventListener('change', () => PageMotion.start());
+  window.addEventListener('pageshow', () => PageMotion.start());
 
   document.addEventListener('astro:after-swap', () => {
     Observer.start();
