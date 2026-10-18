@@ -8,6 +8,8 @@ Assets are stored locally to avoid third-party image requests. Names and marks b
 | Cambricon     | https://www.cambricon.com/favicon.ico                                                          |
 | Iluvatar      | https://www.iluvatar.com/_nuxt/icons/icon_512x512.1247e4.png                                   |
 | Moore Threads | https://www.mthreads.com/favicon/apple-icon-180x180.png                                        |
+| NVIDIA        | `@iconify-json/simple-icons` 1.2.79, `nvidia` icon (Simple Icons, CC0 1.0)                     |
+| Hygon         | https://www.hygon.cn/favicon.png (ICO content, saved as `.ico`)                                |
 | DeepSeek      | https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/deepseek-color.svg |
 | Qwen          | https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/qwen-color.svg     |
 | Kimi          | https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/kimi.svg           |

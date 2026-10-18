@@ -36,8 +36,10 @@ const resources = [
 const hardwareSupport = [
   { name: 'Ascend', detail: 'NPUs', logo: '/images/brands/ascend.png' },
   { name: 'Cambricon', detail: 'MLUs', logo: '/images/brands/cambricon.ico' },
+  { name: 'NVIDIA', detail: 'GPUs', logo: '/images/brands/nvidia.svg' },
   { name: 'Iluvatar CoreX', detail: 'GPUs', logo: '/images/brands/iluvatar.png' },
   { name: 'Moore Threads', detail: 'GPUs', logo: '/images/brands/moore-threads.png' },
+  { name: 'Hygon', detail: 'DCUs', logo: '/images/brands/hygon.ico' },
 ];
 
 const modelSupport = [
@@ -144,6 +146,7 @@ const modelSupport = [
           title="Supported hardware"
           icon="tabler:server-2"
           items={hardwareSupport}
+          columns={3}
           href="https://docs.xllm-ai.com/en/hardware/overview/"
           linkText="View all supported hardware"
         />
