@@ -9,6 +9,7 @@ import Button from '~/components/ui/Button.astro';
 import { localeMeta, type Locale } from '~/utils/i18n';
 
 import { getHomePermalink, getPermalink, trimSlash, getAsset } from '~/utils/permalinks';
+import { getGithubStars } from '~/utils/github-stars';
 import type { CallToAction } from '~/types';
 
 interface Link {
@@ -51,6 +52,18 @@ const {
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 const localeText = localeMeta[locale];
+
+const starsByRepo = new Map<string, number | undefined>();
+
+for (const action of actions) {
+  if (action.githubRepo) {
+    starsByRepo.set(action.githubRepo, await getGithubStars(action.githubRepo));
+  }
+}
+
+const formatStars = (count: number) =>
+  new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(count);
+const formatStarsExact = (count: number) => new Intl.NumberFormat('en-US').format(count);
 
 const isCurrentHref = (href?: string) => {
   if (!href) return false;
@@ -170,8 +183,10 @@ const isCurrentHref = (href?: string) => {
         {
           actions?.length ? (
             <span class="ml-2 rtl:ml-0 rtl:mr-2">
-              {actions.map((btnProps) =>
-                btnProps.githubRepo ? (
+              {actions.map((btnProps) => {
+                const stars = btnProps.githubRepo ? starsByRepo.get(btnProps.githubRepo) : undefined;
+
+                return btnProps.githubRepo ? (
                   <a
                     class="header-pill header-github text-sm"
                     href={btnProps.href}
@@ -181,18 +196,20 @@ const isCurrentHref = (href?: string) => {
                   >
                     {btnProps.icon && <Icon name={btnProps.icon} class="h-4 w-4 shrink-0" />}
                     <span>{btnProps.text}</span>
-                    <span
-                      class="header-github-stars hidden items-center gap-1 text-xs font-semibold text-muted"
-                      data-github-stars-container
-                    >
-                      <Icon name="tabler:star-filled" class="h-3.5 w-3.5 shrink-0 text-amber-500" />
-                      <span class="min-w-[3ch] tabular-nums" data-github-stars={btnProps.githubRepo} />
-                    </span>
+                    {stars !== undefined && (
+                      <span
+                        class="header-github-stars inline-flex items-center gap-1 text-xs font-semibold text-muted"
+                        title={`${formatStarsExact(stars)} GitHub stars`}
+                      >
+                        <Icon name="tabler:star-filled" class="h-3.5 w-3.5 shrink-0 text-amber-500" />
+                        <span class="min-w-[3ch] tabular-nums">{formatStars(stars)}</span>
+                      </span>
+                    )}
                   </a>
                 ) : (
                   <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
-                )
-              )}
+                );
+              })}
             </span>
           ) : (
             ''
@@ -202,44 +219,6 @@ const isCurrentHref = (href?: string) => {
     </div>
   </div>
 </header>
-
-<script>
-  const starRequests = new Map<string, Promise<number | undefined>>();
-
-  function loadStars(repo: string) {
-    if (!starRequests.has(repo)) {
-      starRequests.set(
-        repo,
-        fetch(`https://api.github.com/repos/${repo}`)
-          .then(async (response) => {
-            if (!response.ok) return;
-            const data = await response.json();
-            return typeof data.stargazers_count === 'number' ? data.stargazers_count : undefined;
-          })
-          .catch(() => undefined)
-      );
-    }
-    return starRequests.get(repo)!;
-  }
-
-  function updateStars() {
-    document.querySelectorAll<HTMLElement>('[data-github-stars]').forEach(async (element) => {
-      const repo = element.dataset.githubStars;
-      if (!repo) return;
-      const stars = await loadStars(repo);
-      if (stars !== undefined) {
-        element.textContent = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(
-          stars
-        );
-        element.title = `${new Intl.NumberFormat('en-US').format(stars)} GitHub stars`;
-        element.closest<HTMLElement>('[data-github-stars-container]')?.classList.remove('hidden');
-        element.closest<HTMLElement>('[data-github-stars-container]')?.classList.add('inline-flex');
-      }
-    });
-  }
-
-  document.addEventListener('astro:page-load', updateStars);
-</script>
 
 <style>
   .header-nav {

@@ -5,6 +5,9 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    # Rebuild regularly so the star count baked in at build time stays fresh.
+    - cron: '17 */4 * * *'
 
 permissions:
   contents: read
@@ -24,6 +27,9 @@ jobs:
 
       - name: Install, build, and upload site
         uses: withastro/action@v5
+        env:
+          # Used when fetching the header star count at build time: 1000 requests/hour instead of 60.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           node-version: 22
 

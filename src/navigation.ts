@@ -23,10 +23,10 @@ export const headerData = {
   actions: [
     {
       text: 'GitHub',
-      href: 'https://github.com/jd-opensource/xllm',
+      href: 'https://github.com/xLLM-AI/xllm',
       target: '_blank',
       icon: 'tabler:brand-github',
-      githubRepo: 'jd-opensource/xllm',
+      githubRepo: 'xLLM-AI/xllm',
     },
   ],
 };
@@ -47,15 +47,15 @@ export const footerData = {
     {
       title: 'Project',
       links: [
-        { text: 'GitHub', href: 'https://github.com/jd-opensource/xllm', target: '_blank' },
-        { text: 'Issues', href: 'https://github.com/jd-opensource/xllm/issues', target: '_blank' },
+        { text: 'GitHub', href: 'https://github.com/xLLM-AI/xllm', target: '_blank' },
+        { text: 'Issues', href: 'https://github.com/xLLM-AI/xllm/issues', target: '_blank' },
         { text: 'Docker images', href: 'https://quay.io/repository/jd_xllm/xllm-ai?tab=tags', target: '_blank' },
         { text: 'Technical report', href: 'https://arxiv.org/abs/2510.14686', target: '_blank' },
       ],
     },
   ],
   socialLinks: [
-    { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/jd-opensource/xllm' },
+    { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/xLLM-AI/xllm' },
     { ariaLabel: 'Documentation', icon: 'tabler:book-2', href: 'https://docs.xllm-ai.com/en/' },
     { ariaLabel: 'Docker', icon: 'tabler:brand-docker', href: 'https://quay.io/repository/jd_xllm/xllm-ai?tab=tags' },
     { ariaLabel: 'Technical Report', icon: 'tabler:file-text', href: 'https://arxiv.org/abs/2510.14686' },
@@ -85,10 +85,10 @@ export const headerDataZh = {
   actions: [
     {
       text: 'GitHub',
-      href: 'https://github.com/jd-opensource/xllm',
+      href: 'https://github.com/xLLM-AI/xllm',
       target: '_blank',
       icon: 'tabler:brand-github',
-      githubRepo: 'jd-opensource/xllm',
+      githubRepo: 'xLLM-AI/xllm',
     },
   ],
 };
@@ -109,15 +109,15 @@ export const footerDataZh = {
     {
       title: '项目',
       links: [
-        { text: 'GitHub', href: 'https://github.com/jd-opensource/xllm', target: '_blank' },
-        { text: '问题反馈', href: 'https://github.com/jd-opensource/xllm/issues', target: '_blank' },
+        { text: 'GitHub', href: 'https://github.com/xLLM-AI/xllm', target: '_blank' },
+        { text: '问题反馈', href: 'https://github.com/xLLM-AI/xllm/issues', target: '_blank' },
         { text: 'Docker 镜像', href: 'https://quay.io/repository/jd_xllm/xllm-ai?tab=tags', target: '_blank' },
         { text: '技术报告', href: 'https://arxiv.org/abs/2510.14686', target: '_blank' },
       ],
     },
   ],
   socialLinks: [
-    { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/jd-opensource/xllm' },
+    { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/xLLM-AI/xllm' },
     { ariaLabel: '文档', icon: 'tabler:book-2', href: 'https://docs.xllm-ai.com/zh/' },
     { ariaLabel: 'Docker', icon: 'tabler:brand-docker', href: 'https://quay.io/repository/jd_xllm/xllm-ai?tab=tags' },
     { ariaLabel: '技术报告', icon: 'tabler:file-text', href: 'https://arxiv.org/abs/2510.14686' },
