@@ -3,26 +3,30 @@ import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 
-import { headerData, footerData } from '~/navigation';
+import { headerData, headerDataZh, footerData, footerDataZh } from '~/navigation';
 
 import type { MetaData } from '~/types';
+import { defaultLocale, localeMeta, type Locale } from '~/utils/i18n';
 
 export interface Props {
   metadata?: MetaData;
+  locale?: Locale;
 }
 
-const { metadata } = Astro.props;
+const { metadata, locale = defaultLocale } = Astro.props;
+const header = locale === 'zh' ? headerDataZh : headerData;
+const footer = locale === 'zh' ? footerDataZh : footerData;
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} lang={localeMeta[locale].htmlLang}>
   <slot name="announcement" />
   <slot name="header">
-    <Header {...headerData} isSticky showToggleTheme />
+    <Header {...header} isSticky showToggleTheme locale={locale} />
   </slot>
   <main id="main-content" tabindex="-1">
     <slot />
   </main>
   <slot name="footer">
-    <Footer {...footerData} />
+    <Footer {...footer} />
   </slot>
 </Layout>

@@ -1,0 +1,75 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '~/layouts/PageLayout.astro';
+import PageHeader from '~/components/widgets/PageHeader.astro';
+import Button from '~/components/ui/Button.astro';
+
+const metadata = {
+  title: '团队',
+  description: '认识在开源社区中构建 xLLM 的研究者与工程师。',
+  openGraph: { locale: 'zh_CN' },
+};
+
+const repository = 'https://github.com/jd-opensource/xllm';
+---
+
+<Layout metadata={metadata} locale="zh">
+  <PageHeader
+    eyebrow="社区"
+    title="xLLM 贡献者"
+    description="xLLM 由全球贡献者共同构建。每一个 issue、pull request 和想法都让项目更好。"
+    icon="tabler:users-group"
+  >
+    <Fragment slot="actions">
+      <Button variant="primary" text="在 GitHub 贡献" href={repository} target="_blank" icon="tabler:brand-github" />
+      <Button text="阅读文档" href="https://docs.xllm-ai.com/zh/" target="_blank" icon="tabler:book-2" />
+    </Fragment>
+  </PageHeader>
+
+  <section class="not-prose">
+    <div class="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16">
+      <div
+        class="scroll-fade mx-auto max-w-6xl rounded-3xl border border-neutral-200/80 bg-white/60 p-5 md:p-8 dark:border-neutral-800 dark:bg-white/[0.02]"
+      >
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent">贡献者</p>
+            <h2 class="mt-2 text-xl font-semibold tracking-tight text-heading md:text-2xl dark:text-white">
+              每一位让 xLLM 变得更好的人。
+            </h2>
+          </div>
+          <a
+            href={`${repository}/graphs/contributors`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+          >
+            在 GitHub 查看
+            <Icon
+              name="tabler:arrow-up-right"
+              class="h-4 w-4 motion-safe:transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5"
+            />
+          </a>
+        </div>
+
+        <div
+          class="mt-6 overflow-hidden rounded-2xl bg-white/70 p-3 ring-1 ring-black/[0.04] dark:bg-white/[0.03] dark:ring-white/10 sm:p-4"
+        >
+          <picture>
+            <source
+              media="(max-width: 639px)"
+              srcset="https://contrib.rocks/image?repo=jd-opensource/xllm&columns=6&max=500"
+            />
+            <img
+              class="mx-auto w-full"
+              src="https://contrib.rocks/image?repo=jd-opensource/xllm&columns=12&max=500"
+              alt="为 xLLM 做出贡献的开发者"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

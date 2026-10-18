@@ -1,0 +1,89 @@
+---
+import Button from '~/components/ui/Button.astro';
+import type { Locale } from '~/utils/i18n';
+
+export interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+
+const copy =
+  locale === 'zh'
+    ? {
+        eyebrow: '错误 404',
+        title: '未找到该页面。',
+        description: '页面可能已被移动，或链接有误。请返回首页，或直接前往文档。',
+        home: '返回首页',
+        homeHref: '/zh',
+        docs: '阅读文档',
+        docsHref: 'https://docs.xllm-ai.com/zh/',
+        helpLabel: '相关链接',
+        links: [
+          { text: '论文', href: '/zh/publications' },
+          { text: '团队', href: '/zh/team' },
+          { text: 'GitHub', href: 'https://github.com/jd-opensource/xllm' },
+        ],
+      }
+    : {
+        eyebrow: 'Error 404',
+        title: "We couldn't find that page.",
+        description: 'It may have moved, or the link might be incorrect. Head back home or jump straight to the docs.',
+        home: 'Back to homepage',
+        homeHref: '/',
+        docs: 'Read the docs',
+        docsHref: 'https://docs.xllm-ai.com/en/',
+        helpLabel: 'Helpful links',
+        links: [
+          { text: 'Publications', href: '/publications' },
+          { text: 'Team', href: '/team' },
+          { text: 'GitHub', href: 'https://github.com/jd-opensource/xllm' },
+        ],
+      };
+---
+
+<section class="not-prose relative overflow-hidden">
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div
+      class="absolute left-1/2 top-0 h-[28rem] w-[50rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(235,39,0,0.1),transparent)] blur-2xl dark:opacity-70"
+    >
+    </div>
+    <div class="not-found-grid absolute inset-0"></div>
+  </div>
+
+  <div
+    class="relative mx-auto flex min-h-[70vh] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6"
+  >
+    <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent">{copy.eyebrow}</p>
+    <p
+      aria-hidden="true"
+      class="mt-4 bg-gradient-to-b from-[#EB2700] to-[#ff8a73] bg-clip-text text-[7rem] font-bold leading-none tracking-[-0.06em] text-transparent sm:text-[9rem] md:text-[11rem]"
+    >
+      404
+    </p>
+    <h1 class="mt-4 text-3xl font-semibold tracking-tight text-heading sm:text-4xl dark:text-white">
+      {copy.title}
+    </h1>
+    <p class="mt-4 max-w-xl text-base leading-relaxed text-muted">{copy.description}</p>
+
+    <div class="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+      <Button variant="primary" text={copy.home} href={copy.homeHref} icon="tabler:home" />
+      <Button text={copy.docs} href={copy.docsHref} target="_blank" icon="tabler:book-2" />
+    </div>
+
+    <nav aria-label={copy.helpLabel} class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium">
+      {
+        copy.links.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith('https:') ? '_blank' : undefined}
+            rel={link.href.startsWith('https:') ? 'noopener noreferrer' : undefined}
+            class="text-muted transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+          >
+            {link.text}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</section>

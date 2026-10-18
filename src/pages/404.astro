@@ -1,82 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Button from '~/components/ui/Button.astro';
+import NotFound from '~/components/widgets/NotFound.astro';
 
 const metadata = {
   title: 'Page not found',
   robots: { index: false },
 };
-
-const helpfulLinks = [
-  { text: 'Publications', href: '/publications' },
-  { text: 'Team', href: '/team' },
-  { text: 'GitHub', href: 'https://github.com/jd-opensource/xllm' },
-];
 ---
 
-<Layout metadata={metadata}>
-  <section class="not-prose relative overflow-hidden">
-    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-      <div
-        class="absolute left-1/2 top-0 h-[28rem] w-[50rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(235,39,0,0.1),transparent)] blur-2xl dark:opacity-70"
-      >
-      </div>
-      <div class="not-found-grid absolute inset-0"></div>
-    </div>
-
-    <div
-      class="relative mx-auto flex min-h-[70vh] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6"
-    >
-      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent">Error 404</p>
-      <p
-        aria-hidden="true"
-        class="mt-4 bg-gradient-to-b from-[#EB2700] to-[#ff8a73] bg-clip-text text-[7rem] font-bold leading-none tracking-[-0.06em] text-transparent sm:text-[9rem] md:text-[11rem]"
-      >
-        404
-      </p>
-      <h1 class="mt-4 text-3xl font-semibold tracking-tight text-heading sm:text-4xl dark:text-white">
-        We couldn't find that page.
-      </h1>
-      <p class="mt-4 max-w-xl text-base leading-relaxed text-muted">
-        It may have moved, or the link might be incorrect. Head back home or jump straight to the docs.
-      </p>
-
-      <div class="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-        <Button variant="primary" text="Back to homepage" href="/" icon="tabler:home" />
-        <Button text="Read the docs" href="https://docs.xllm-ai.com/en/" target="_blank" icon="tabler:book-2" />
-      </div>
-
-      <nav aria-label="Helpful links" class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium">
-        {
-          helpfulLinks.map((link) => (
-            <a
-              href={link.href}
-              target={link.href.startsWith('https:') ? '_blank' : undefined}
-              rel={link.href.startsWith('https:') ? 'noopener noreferrer' : undefined}
-              class="text-muted transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-            >
-              {link.text}
-            </a>
-          ))
-        }
-      </nav>
-    </div>
-  </section>
+<Layout metadata={metadata} locale="en">
+  <NotFound locale="en" />
 </Layout>
-
-<style>
-  .not-found-grid {
-    background-image:
-      linear-gradient(to right, rgb(8 8 8 / 3%) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(8 8 8 / 3%) 1px, transparent 1px);
-    background-size: 56px 56px;
-    -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 0%, black, transparent 75%);
-    mask-image: radial-gradient(ellipse 60% 70% at 50% 0%, black, transparent 75%);
-  }
-
-  :global(.dark) .not-found-grid {
-    background-image:
-      linear-gradient(to right, rgb(255 255 255 / 4%) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 4%) 1px, transparent 1px);
-  }
-</style>

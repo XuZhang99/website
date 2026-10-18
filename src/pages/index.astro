@@ -1,11 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
-import Header from '~/components/widgets/Header.astro';
 import InferenceFlow from '~/components/widgets/InferenceFlow.astro';
 import SupportGroup from '~/components/widgets/SupportGroup.astro';
 import Button from '~/components/ui/Button.astro';
-import { headerData } from '~/navigation';
 
 const metadata = {
   title: 'xLLM',
@@ -52,11 +50,7 @@ const modelSupport = [
 ];
 ---
 
-<Layout metadata={metadata}>
-  <Fragment slot="header">
-    <Header {...headerData} isSticky showToggleTheme />
-  </Fragment>
-
+<Layout metadata={metadata} locale="en">
   <section class="relative -mt-[76px] 2xl:-mt-[85px] not-prose">
     <div class="hero-ambient pointer-events-none absolute inset-x-0 top-0 h-[780px]" aria-hidden="true"></div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
@@ -102,7 +96,7 @@ const modelSupport = [
           </div>
         </div>
 
-        <InferenceFlow />
+        <InferenceFlow locale="en" />
 
         <div
           class="scroll-fade mx-auto mt-10 grid max-w-6xl divide-y divide-neutral-200/80 overflow-hidden rounded-2xl border border-neutral-200/80 bg-white/60 md:mt-12 md:grid-cols-3 md:divide-x md:divide-y-0 dark:divide-neutral-800 dark:border-neutral-800 dark:bg-white/[0.02]"
@@ -276,38 +270,3 @@ const modelSupport = [
     </div>
   </section>
 </Layout>
-
-<style>
-  .hero-ambient {
-    background-image:
-      radial-gradient(ellipse 65% 55% at 50% -8%, rgb(235 39 0 / 12%), transparent 68%),
-      linear-gradient(to right, rgb(8 8 8 / 3.2%) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(8 8 8 / 3.2%) 1px, transparent 1px);
-    background-size:
-      100% 100%,
-      56px 56px,
-      56px 56px;
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 38%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, black 38%, transparent 100%);
-  }
-
-  :global(.dark) .hero-ambient {
-    background-image:
-      radial-gradient(ellipse 65% 55% at 50% -8%, rgb(235 39 0 / 20%), transparent 68%),
-      linear-gradient(to right, rgb(255 255 255 / 4.5%) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 4.5%) 1px, transparent 1px);
-  }
-
-  .community-grid {
-    background-image: radial-gradient(rgb(8 8 8 / 7%) 0.6px, transparent 0.6px);
-    background-size: 14px 14px;
-    opacity: 0.35;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 55%);
-    mask-image: linear-gradient(to right, transparent, black 55%);
-  }
-
-  :global(.dark) .community-grid {
-    background-image: radial-gradient(rgb(255 255 255 / 9%) 0.6px, transparent 0.6px);
-    opacity: 0.45;
-  }
-</style>

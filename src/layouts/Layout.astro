@@ -16,17 +16,30 @@ import BasicScripts from '~/components/common/BasicScripts.astro';
 import { ClientRouter } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '~/types';
+import { getCanonical } from '~/utils/permalinks';
+import { getLocalizedPathname } from '~/utils/i18n';
 
 export interface Props {
   metadata?: MetaDataType;
+  lang?: string;
 }
 
-const { metadata = {} } = Astro.props;
+const { metadata = {}, lang } = Astro.props;
 const { language, textDirection } = I18N;
+const htmlLang = lang ?? language;
+const skipLabel = htmlLang.startsWith('zh') ? '跳到主要内容' : 'Skip to content';
+const isNotFound = /\/404(?:\.html)?$/.test(Astro.url.pathname);
+const alternateUrls = isNotFound
+  ? []
+  : ([
+      { hreflang: 'en', href: getCanonical(getLocalizedPathname(Astro.url.pathname, 'en')) },
+      { hreflang: 'zh-CN', href: getCanonical(getLocalizedPathname(Astro.url.pathname, 'zh')) },
+      { hreflang: 'x-default', href: getCanonical(getLocalizedPathname(Astro.url.pathname, 'en')) },
+    ] satisfies Array<{ hreflang: string; href: string | URL }>);
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={htmlLang} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <CommonMeta />
     <script is:inline data-astro-rerun>
@@ -36,6 +49,7 @@ const { language, textDirection } = I18N;
     <CustomStyles />
     <ApplyColorMode />
     <Metadata {...metadata} />
+    {alternateUrls.map((alternate) => <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />)}
     <SiteVerification />
     <Analytics />
 
@@ -44,7 +58,7 @@ const { language, textDirection } = I18N;
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content">{skipLabel}</a>
     <slot />
 
     <BasicScripts />
