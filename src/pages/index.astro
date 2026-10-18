@@ -61,14 +61,25 @@ const modelSupport = [
     </div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
       <div class="pointer-events-none pt-[76px] 2xl:pt-[85px]"></div>
-      <div class="py-16 md:py-24 lg:py-28">
-        <div class="scroll-fade-stagger mx-auto max-w-4xl text-center">
-          <img src="/images/logo.png" alt="xLLM logo" class="mx-auto h-28 w-auto" />
-          <h1 class="mt-3 text-3xl font-bold leading-tight tracking-tight text-heading md:text-3xl dark:text-white">
-            The <span class="font-extrabold text-[#EB2700]">High-Performance</span> Inference Framework for
-            <span class="font-extrabold text-[#EB2700]">LLM, VLM, DiT and REC</span> Models on Heterogeneous Accelerators
+      <div class="pb-12 pt-10 md:pb-16 md:pt-14 lg:pt-16">
+        <div class="scroll-fade-stagger mx-auto max-w-6xl text-center">
+          <div class="flex items-center justify-center gap-3">
+            <img src="/images/logo.png" alt="xLLM" class="h-12 w-auto" width="3194" height="1705" />
+            <span class="border-l border-current/15 pl-3 text-xs font-medium uppercase tracking-[0.16em] text-muted">
+              Open-source inference
+            </span>
+          </div>
+          <h1
+            class="mt-6 text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-heading sm:text-5xl lg:text-6xl dark:text-white"
+          >
+            <span class="block">High-performance inference.</span>
+            <span class="mt-2 block text-primary">Across heterogeneous accelerators.</span>
           </h1>
-          <div class="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+            A unified framework for LLM, VLM, DiT, and REC models. Built for efficient inference across diverse AI
+            hardware.
+          </p>
+          <div class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <Button
               variant="primary"
               text="Get Started"
@@ -77,6 +88,7 @@ const modelSupport = [
               icon="tabler:book-2"
               class="border-[#EB2700] bg-[#EB2700] text-white hover:border-[#EB2700] hover:bg-[#EB2700] dark:border-[#EB2700] dark:bg-[#EB2700] dark:hover:border-[#EB2700] dark:hover:bg-[#EB2700]"
             />
+            <Button text="Explore support" href="#support" icon="tabler:arrow-down" />
           </div>
         </div>
 
@@ -89,8 +101,7 @@ const modelSupport = [
               Easy
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
-              Deploy mainstream open models on supported accelerators with a unified service-engine stack and
-              production-oriented tooling.
+              Deploy open models with a unified service-engine stack and production-oriented tooling.
             </p>
           </div>
           <div
@@ -101,8 +112,7 @@ const modelSupport = [
               Fast
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
-              Improve throughput with asynchronous scheduling, graph optimization, multi-stream execution, and dynamic
-              load balancing.
+              Improve throughput with asynchronous scheduling, graph optimization, and multi-stream execution.
             </p>
           </div>
           <div
@@ -113,8 +123,8 @@ const modelSupport = [
               Cost Efficient
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
-              Reduce inference cost through hardware-aware optimization, efficient memory management, and global KV
-              cache control.
+              Reduce inference cost with hardware-aware optimization, efficient memory management, and global KV
+              caching.
             </p>
           </div>
         </div>
