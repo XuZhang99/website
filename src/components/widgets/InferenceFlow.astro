@@ -1,20 +1,46 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+import type { Locale } from '~/utils/i18n';
+
+export interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
 const modelTypes = ['LLM', 'VLM', 'DiT', 'REC'];
 const hardwareTypes = ['NPU', 'MLU', 'GPU'];
+
+const copy =
+  locale === 'zh'
+    ? {
+        title: '多种模型，多种芯片，一个推理层',
+        labels: { models: '模型', engine: '统一引擎', accelerators: '加速器' },
+        service: '服务与引擎',
+        engineFeatures: ['调度', 'KV 缓存', '图执行'],
+        caption: '统一的服务与引擎层，搭配面向不同硬件的专用后端。',
+        captionLink: '探索模型与硬件支持',
+      }
+    : {
+        title: 'Many models. Many accelerators. One inference layer.',
+        labels: { models: 'Models', engine: 'Unified engine', accelerators: 'Accelerators' },
+        service: 'Service & Engine',
+        engineFeatures: ['Scheduling', 'KV cache', 'Graph execution'],
+        caption: 'A unified service and engine layer, with hardware-specific backends.',
+        captionLink: 'Explore model and hardware support',
+      };
 ---
 
 <figure
   class="inference-flow scroll-fade mx-auto mt-12 max-w-5xl overflow-hidden rounded-3xl border border-black/10 bg-white/80 p-5 sm:mt-14 sm:p-8 dark:border-white/10 dark:bg-neutral-950/80"
 >
   <div class="mb-7 flex flex-wrap items-center justify-between gap-3">
-    <p class="text-sm font-medium text-heading dark:text-white">Many models. Many accelerators. One inference layer.</p>
+    <p class="text-sm font-medium text-heading dark:text-white">{copy.title}</p>
   </div>
 
   <div class="flow-layout">
     <div class="flow-endpoint">
-      <p class="flow-label"><span>01</span> Models</p>
+      <p class="flow-label"><span>01</span> {copy.labels.models}</p>
       <ul class="grid grid-cols-2 gap-2">
         {
           modelTypes.map((model) => (
@@ -29,17 +55,17 @@ const hardwareTypes = ['NPU', 'MLU', 'GPU'];
     <div class="flow-connector" aria-hidden="true"><Icon name="tabler:chevron-right" class="h-4 w-4" /></div>
 
     <div class="flow-engine">
-      <p class="flow-label"><span>02</span> Unified engine</p>
+      <p class="flow-label"><span>02</span> {copy.labels.engine}</p>
       <div class="rounded-2xl border border-[#EB2700]/25 bg-[#EB2700]/[0.04] p-5 text-center dark:bg-[#EB2700]/[0.08]">
         <div class="flex items-center justify-center gap-2.5">
           <Icon name="tabler:cpu" class="h-7 w-7 text-primary" />
           <span class="text-3xl font-semibold tracking-tight text-heading dark:text-white">xLLM</span>
         </div>
-        <p class="mt-2 text-xs text-muted">Service &amp; Engine</p>
+        <p class="mt-2 text-xs text-muted">{copy.service}</p>
         <ul
           class="mt-4 flex flex-wrap justify-center gap-x-3 gap-y-1 border-t border-[#EB2700]/15 pt-3 text-[0.65rem] font-medium text-muted"
         >
-          <li>Scheduling</li><li>KV cache</li><li>Graph execution</li>
+          {copy.engineFeatures.map((feature) => <li>{feature}</li>)}
         </ul>
       </div>
     </div>
@@ -47,7 +73,7 @@ const hardwareTypes = ['NPU', 'MLU', 'GPU'];
     <div class="flow-connector" aria-hidden="true"><Icon name="tabler:chevron-right" class="h-4 w-4" /></div>
 
     <div class="flow-endpoint">
-      <p class="flow-label"><span>03</span> Accelerators</p>
+      <p class="flow-label"><span>03</span> {copy.labels.accelerators}</p>
       <ul class="grid grid-cols-3 gap-2 sm:grid-cols-1">
         {
           hardwareTypes.map((hardware) => (
@@ -64,9 +90,9 @@ const hardwareTypes = ['NPU', 'MLU', 'GPU'];
   <figcaption
     class="mt-6 border-t border-black/[0.06] pt-4 text-center text-xs leading-relaxed text-muted dark:border-white/10"
   >
-    A unified service and engine layer, with hardware-specific backends.
+    {copy.caption}
     <a href="#support" class="underline decoration-current/30 underline-offset-4 hover:text-primary"
-      >Explore model and hardware support</a
+      >{copy.captionLink}</a
     >
   </figcaption>
 </figure>
