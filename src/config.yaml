@@ -11,7 +11,7 @@ metadata:
   title:
     default: xLLM
     template: '%s | xLLM'
-  description: 'xLLM 是面向国产 AI 加速器优化的高性能 LLM 推理框架，聚焦企业级部署效率、吞吐、时延与成本优化。'
+  description: 'xLLM is a high-performance inference framework for LLM, VLM, DiT, and REC models, optimized for heterogeneous AI accelerators.'
   robots:
     index: true
     follow: true

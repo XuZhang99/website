@@ -1,0 +1,65 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  icon?: string;
+}
+
+const { eyebrow, title, description, icon } = Astro.props;
+---
+
+<section class="not-prose relative overflow-hidden border-b border-neutral-200/70 dark:border-neutral-800">
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="page-header-grid absolute inset-0"></div>
+    <div
+      class="absolute -right-40 -top-40 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(235,39,0,0.1),transparent)] blur-2xl dark:opacity-70"
+    >
+    </div>
+    {
+      icon && (
+        <Icon
+          name={icon}
+          class="absolute -right-4 top-1/2 hidden h-64 w-64 -translate-y-1/2 text-[#EB2700]/[0.06] xl:block dark:text-white/[0.04]"
+        />
+      )
+    }
+  </div>
+  <div class="relative mx-auto max-w-7xl px-4 pb-12 pt-14 sm:px-6 md:pb-16 md:pt-20">
+    <div class="scroll-fade max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent">{eyebrow}</p>
+      <h1 class="mt-4 text-3xl font-semibold tracking-tight text-heading sm:text-4xl md:text-5xl dark:text-white">
+        {title}
+      </h1>
+      {description && <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg">{description}</p>}
+      {
+        Astro.slots.has('actions') && (
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <slot name="actions" />
+          </div>
+        )
+      }
+    </div>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-header-grid {
+    background-image:
+      linear-gradient(to right, rgb(8 8 8 / 3%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(8 8 8 / 3%) 1px, transparent 1px);
+    background-size: 56px 56px;
+    opacity: 0.8;
+    -webkit-mask-image: radial-gradient(ellipse 70% 100% at 70% 0%, black, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 100% at 70% 0%, black, transparent 75%);
+  }
+
+  :global(.dark) .page-header-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 4%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 4%) 1px, transparent 1px);
+  }
+</style>

@@ -113,6 +113,10 @@
   background-color: var(--aw-color-bg-header);
   box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%);
   border-radius: 1.25rem;
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease,
+    border-radius 200ms ease;
 }
 .dark #header.scroll > div:first-child,
 #header.scroll.dark > div:first-child {
@@ -140,6 +144,43 @@
 .dropdown:focus-within .dropdown-menu,
 .dropdown:hover .dropdown-menu {
   display: block;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: var(--aw-color-text-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+  transform: translateY(-200%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--aw-color-primary);
+  outline-offset: 2px;
+}
+
+.dark .skip-link {
+  background-color: rgb(23 23 23);
+  color: white;
+}
+
+.aw-link-active {
+  color: var(--aw-color-accent);
+  background-color: rgb(235 39 0 / 7%);
+}
+
+.dark .aw-link-active {
+  color: var(--aw-color-accent);
+  background-color: rgb(235 39 0 / 14%);
 }
 
 [astro-icon].icon-light > * {

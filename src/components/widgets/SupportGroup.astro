@@ -30,23 +30,23 @@ const { title, icon, items, href, linkText, columns = 2, divided = false } = Ast
     <Icon name={icon} class="h-4 w-4" />
     {title}
   </h3>
-  <ul class:list={['my-5 grid gap-x-3 gap-y-5', columns === 3 ? 'grid-cols-3' : 'grid-cols-2']}>
+  <ul class:list={['my-6 grid gap-x-3 gap-y-6', columns === 3 ? 'grid-cols-3' : 'grid-cols-2']}>
     {
       items.map((item) => (
         <li class="flex flex-col items-center text-center">
-          <span class="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-white ring-1 ring-black/[0.04]">
+          <span class="mb-2.5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] ring-1 ring-black/[0.05] dark:shadow-none dark:ring-white/10">
             {item.logo ? (
               <img
                 src={item.logo}
                 alt=""
-                width="32"
-                height="32"
+                width="36"
+                height="36"
                 loading="lazy"
                 decoding="async"
-                class="h-8 w-8 object-contain"
+                class="h-9 w-9 object-contain"
               />
             ) : (
-              <span class="font-mono text-xl font-semibold tracking-tight text-neutral-800" aria-hidden="true">
+              <span class="font-mono text-2xl font-semibold tracking-tight text-neutral-800" aria-hidden="true">
                 {item.monogram}
               </span>
             )}

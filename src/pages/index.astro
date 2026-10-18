@@ -54,17 +54,29 @@ const modelSupport = [
 
 <Layout metadata={metadata}>
   <Fragment slot="header">
-    <Header {...headerData} showToggleTheme />
+    <Header {...headerData} isSticky showToggleTheme />
   </Fragment>
 
   <section class="relative -mt-[76px] 2xl:-mt-[85px] not-prose">
+    <div class="hero-ambient pointer-events-none absolute inset-x-0 top-0 h-[780px]" aria-hidden="true"></div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
       <div class="pointer-events-none pt-[76px] 2xl:pt-[85px]"></div>
       <div class="pb-12 pt-10 md:pb-16 md:pt-14 lg:pt-16">
         <div class="scroll-fade-stagger mx-auto max-w-6xl text-center">
-          <img src="/images/logo.png" alt="xLLM" class="mx-auto h-32 w-auto md:h-48" width="3194" height="1705" />
+          <div class="py-4 md:py-5">
+            <img
+              src="/images/logo-wordmark.png"
+              alt="xLLM"
+              class="mx-auto block h-[4.5rem] w-auto md:h-[6.5rem]"
+              width="1200"
+              height="374"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
           <h1
-            class="mt-6 text-2xl font-semibold leading-tight tracking-tight text-heading sm:text-3xl lg:text-[2.5rem] lg:leading-tight dark:text-white"
+            class="mt-7 text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-heading sm:text-4xl lg:text-[2.75rem] dark:text-white"
           >
             <span class="block">High-performance inference.</span>
             <span class="mt-2 block text-primary">Across heterogeneous accelerators.</span>
@@ -84,40 +96,55 @@ const modelSupport = [
               href="https://docs.xllm-ai.com/en/getting_started/quick_start/"
               target="_blank"
               icon="tabler:book-2"
+              class="sm:min-w-[10rem]"
             />
-            <Button text="Explore support" href="#support" icon="tabler:arrow-down" />
+            <Button text="Explore support" href="#support" icon="tabler:arrow-down" class="sm:min-w-[10rem]" />
           </div>
         </div>
 
         <InferenceFlow />
 
-        <div class="scroll-fade-stagger mx-auto mt-12 grid max-w-6xl gap-4 md:grid-cols-3">
-          <div class="border-t border-neutral-200 px-2 py-6 dark:border-neutral-800">
-            <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:circle-check" class="h-5 w-5 text-accent" />
+        <div
+          class="scroll-fade mx-auto mt-10 grid max-w-6xl divide-y divide-neutral-200/80 overflow-hidden rounded-2xl border border-neutral-200/80 bg-white/60 md:mt-12 md:grid-cols-3 md:divide-x md:divide-y-0 dark:divide-neutral-800 dark:border-neutral-800 dark:bg-white/[0.02]"
+        >
+          <div class="p-6 md:p-7">
+            <h2 class="flex items-center gap-3 text-lg font-semibold text-heading dark:text-white">
+              <span
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EB2700]/[0.07] text-accent ring-1 ring-[#EB2700]/10 dark:bg-[#EB2700]/10"
+              >
+                <Icon name="tabler:circle-check" class="h-[18px] w-[18px]" />
+              </span>
               Easy
             </h2>
-            <p class="mt-3 text-sm text-muted md:text-base">
+            <p class="mt-4 text-sm leading-relaxed text-muted md:text-[0.95rem]">
               Bring models into your applications with OpenAI-compatible and Anthropic-compatible APIs for online
               serving.
             </p>
           </div>
-          <div class="border-t border-neutral-200 px-2 py-6 dark:border-neutral-800">
-            <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:bolt" class="h-5 w-5 text-accent" />
+          <div class="p-6 md:p-7">
+            <h2 class="flex items-center gap-3 text-lg font-semibold text-heading dark:text-white">
+              <span
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EB2700]/[0.07] text-accent ring-1 ring-[#EB2700]/10 dark:bg-[#EB2700]/10"
+              >
+                <Icon name="tabler:bolt" class="h-[18px] w-[18px]" />
+              </span>
               Fast
             </h2>
-            <p class="mt-3 text-sm text-muted md:text-base">
+            <p class="mt-4 text-sm leading-relaxed text-muted md:text-[0.95rem]">
               Keep accelerators busy with continuous batching, task pipelining, and graph execution to reduce runtime
               overhead and improve throughput.
             </p>
           </div>
-          <div class="border-t border-neutral-200 px-2 py-6 dark:border-neutral-800">
-            <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:coins" class="h-5 w-5 text-accent" />
+          <div class="p-6 md:p-7">
+            <h2 class="flex items-center gap-3 text-lg font-semibold text-heading dark:text-white">
+              <span
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EB2700]/[0.07] text-accent ring-1 ring-[#EB2700]/10 dark:bg-[#EB2700]/10"
+              >
+                <Icon name="tabler:coins" class="h-[18px] w-[18px]" />
+              </span>
               Cost Efficient
             </h2>
-            <p class="mt-3 text-sm text-muted md:text-base">
+            <p class="mt-4 text-sm leading-relaxed text-muted md:text-[0.95rem]">
               Reuse prompt prefixes and extend KV caching across device memory, host memory, and distributed storage to
               reduce repeated computation and memory pressure.
             </p>
@@ -127,16 +154,16 @@ const modelSupport = [
     </div>
   </section>
 
-  <section id="support" class="not-prose border-y border-neutral-200/70 bg-page dark:border-neutral-800">
+  <section id="support" class="not-prose scroll-mt-24 border-y border-neutral-200/70 bg-page dark:border-neutral-800">
     <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
       <div class="scroll-fade mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-accent">Broad Support</p>
-        <h2 class="mt-3 text-2xl font-bold tracking-tight text-heading md:text-3xl dark:text-white">
-          Cross-Platform Model & Hardware Support
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent">Broad Support</p>
+        <h2 class="mt-3 text-2xl font-semibold tracking-tight text-heading md:text-3xl dark:text-white">
+          Cross-Platform Model &amp; Hardware Support
         </h2>
       </div>
 
-      <div class="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-2 lg:gap-0">
+      <div class="mx-auto mt-10 grid max-w-5xl gap-6 lg:grid-cols-2 lg:gap-0">
         <SupportGroup
           title="Supported hardware"
           icon="tabler:server-2"
@@ -158,7 +185,7 @@ const modelSupport = [
     </div>
   </section>
 
-  <section id="resources" aria-labelledby="resources-heading" class="not-prose">
+  <section id="resources" aria-labelledby="resources-heading" class="not-prose scroll-mt-24">
     <div class="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1fr_1.5fr] md:gap-16 md:py-20">
       <div class="scroll-fade">
         <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent">Resources</p>
@@ -192,7 +219,7 @@ const modelSupport = [
                   <p class="mt-1 text-sm leading-relaxed text-muted">{resource.description}</p>
                 </div>
                 <Icon
-                  name="tabler:arrow-up-right"
+                  name={resource.href.startsWith('https:') ? 'tabler:arrow-up-right' : 'tabler:arrow-right'}
                   class="h-5 w-5 shrink-0 text-muted transition-colors group-hover:text-primary"
                 />
               </a>
@@ -203,11 +230,24 @@ const modelSupport = [
     </div>
   </section>
 
-  <section id="community" aria-labelledby="community-heading" class="not-prose px-4 pb-16 sm:px-6 md:pb-20">
+  <section
+    id="community"
+    aria-labelledby="community-heading"
+    class="not-prose scroll-mt-24 px-4 pb-16 sm:px-6 md:pb-20"
+  >
     <div
       class="scroll-fade relative mx-auto flex max-w-7xl flex-col gap-8 overflow-hidden rounded-3xl border border-neutral-200 bg-surface p-7 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:p-12 dark:border-neutral-800"
     >
-      <div class="max-w-xl">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div
+          class="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgba(235,39,0,0.16),transparent)] blur-2xl dark:opacity-70"
+        >
+        </div>
+        <div class="community-grid absolute inset-y-0 right-0 w-2/3"></div>
+        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#EB2700]/30 to-transparent">
+        </div>
+      </div>
+      <div class="relative z-10 max-w-xl">
         <p class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
           <Icon name="tabler:brand-github" class="h-4 w-4" /> Community
         </p>
@@ -221,7 +261,9 @@ const modelSupport = [
           Ask a question, share an idea, or contribute to the next improvement. Help shape the future of xLLM.
         </p>
       </div>
-      <div class="flex shrink-0 flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:flex-col lg:items-stretch">
+      <div
+        class="relative z-10 flex shrink-0 flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:flex-col lg:items-stretch"
+      >
         <Button
           variant="primary"
           text="Join the conversation"
@@ -229,13 +271,43 @@ const modelSupport = [
           target="_blank"
           icon="tabler:arrow-up-right"
         />
-        <Button
-          text="Meet the contributors"
-          href="https://github.com/jd-opensource/xllm/graphs/contributors"
-          target="_blank"
-          icon="tabler:users"
-        />
+        <Button text="Meet the contributors" href="/team" icon="tabler:users" />
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .hero-ambient {
+    background-image:
+      radial-gradient(ellipse 65% 55% at 50% -8%, rgb(235 39 0 / 12%), transparent 68%),
+      linear-gradient(to right, rgb(8 8 8 / 3.2%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(8 8 8 / 3.2%) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      56px 56px,
+      56px 56px;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 38%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 38%, transparent 100%);
+  }
+
+  :global(.dark) .hero-ambient {
+    background-image:
+      radial-gradient(ellipse 65% 55% at 50% -8%, rgb(235 39 0 / 20%), transparent 68%),
+      linear-gradient(to right, rgb(255 255 255 / 4.5%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 4.5%) 1px, transparent 1px);
+  }
+
+  .community-grid {
+    background-image: radial-gradient(rgb(8 8 8 / 7%) 0.6px, transparent 0.6px);
+    background-size: 14px 14px;
+    opacity: 0.35;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 55%);
+    mask-image: linear-gradient(to right, transparent, black 55%);
+  }
+
+  :global(.dark) .community-grid {
+    background-image: radial-gradient(rgb(255 255 255 / 9%) 0.6px, transparent 0.6px);
+    opacity: 0.45;
+  }
+</style>

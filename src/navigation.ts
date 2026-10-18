@@ -33,6 +33,25 @@ export const headerData = {
 
 export const footerData = {
   copyright: '© 2026 xLLM. All rights reserved.',
+  links: [
+    {
+      title: 'Explore',
+      links: [
+        { text: 'Documentation', href: 'https://docs.xllm-ai.com/en/', target: '_blank' },
+        { text: 'Publications', href: getPermalink('/publications') },
+        { text: 'Team', href: getPermalink('/team') },
+      ],
+    },
+    {
+      title: 'Project',
+      links: [
+        { text: 'GitHub', href: 'https://github.com/jd-opensource/xllm', target: '_blank' },
+        { text: 'Issues', href: 'https://github.com/jd-opensource/xllm/issues', target: '_blank' },
+        { text: 'Docker images', href: 'https://quay.io/repository/jd_xllm/xllm-ai?tab=tags', target: '_blank' },
+        { text: 'Technical report', href: 'https://arxiv.org/abs/2510.14686', target: '_blank' },
+      ],
+    },
+  ],
   socialLinks: [
     { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/jd-opensource/xllm' },
     { ariaLabel: 'Documentation', icon: 'tabler:book-2', href: 'https://docs.xllm-ai.com/en/' },

@@ -80,7 +80,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       </div>
     </div>
     <nav
-      class="items-center w-full md:w-auto hidden md:flex md:mx-0 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
+      class="items-center w-full md:w-auto hidden flex md:flex md:mx-0 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
       aria-label="Main navigation"
     >
       <ul
@@ -137,12 +137,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     <div
       class:list={[
         { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
-        'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end',
+        'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 border-t border-neutral-200 bg-white/95 p-3 backdrop-blur-md md:border-0 md:bg-transparent md:backdrop-blur-none md:p-0 md:justify-self-end dark:border-neutral-800 dark:bg-neutral-950/95 md:dark:bg-transparent',
       ]}
     >
       <div class="items-center flex justify-between w-full md:w-auto">
         <div class="flex">
-          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
+          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5" />}
           {
             showRssFeed && (
               <a
@@ -169,11 +169,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                   >
                     {btnProps.icon && <Icon name={btnProps.icon} class="h-5 w-5" />}
                     <span>{btnProps.text}</span>
-                    <span class="inline-flex items-center gap-1 border-l border-neutral-300 pl-2 text-xs font-semibold text-muted dark:border-neutral-600 dark:text-neutral-300">
+                    <span
+                      class="hidden inline-flex items-center gap-1 border-l border-neutral-300 pl-2 text-xs font-semibold text-muted dark:border-neutral-600 dark:text-neutral-300"
+                      data-github-stars-container
+                    >
                       <Icon name="tabler:star-filled" class="h-4 w-4 text-amber-500" />
-                      <span class="min-w-[3ch] tabular-nums" data-github-stars={btnProps.githubRepo}>
-                        Stars
-                      </span>
+                      <span class="min-w-[3ch] tabular-nums" data-github-stars={btnProps.githubRepo} />
                     </span>
                   </a>
                 ) : (
@@ -219,6 +220,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           stars
         );
         element.title = `${new Intl.NumberFormat('en-US').format(stars)} GitHub stars`;
+        element.closest<HTMLElement>('[data-github-stars-container]')?.classList.remove('hidden');
       }
     });
   }

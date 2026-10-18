@@ -1,9 +1,13 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
+import PageHeader from '~/components/widgets/PageHeader.astro';
 import { frontmatter as publicationsData } from '~/data/publications.md';
 
 const metadata = {
   title: 'Publications',
+  description:
+    'Peer-reviewed papers and preprints from the xLLM team on efficient inference, systems, and multimodal models.',
 };
 
 type Publication = {
@@ -17,38 +21,50 @@ const publications = [...(publicationsData.publications as Publication[])].rever
 ---
 
 <Layout metadata={metadata}>
+  <PageHeader
+    eyebrow="Research"
+    title="Publications"
+    description="Peer-reviewed papers and preprints from the xLLM team on efficient inference."
+    icon="tabler:microscope"
+  />
+
   <section class="not-prose">
     <div class="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16">
-      <h1 class="sr-only">Publications</h1>
-
       <div class="mx-auto max-w-5xl">
-        <ol class="space-y-2">
+        <div class="mb-5 flex items-end justify-between gap-4">
+          <h2 class="text-lg font-semibold tracking-tight text-heading dark:text-white">All publications</h2>
+          <p class="text-sm text-muted">{publications.length} publications</p>
+        </div>
+
+        <ol
+          class="scroll-fade divide-y divide-neutral-200/80 overflow-hidden rounded-3xl border border-neutral-200/80 bg-white/60 dark:divide-neutral-800 dark:border-neutral-800 dark:bg-white/[0.02]"
+        >
           {
             publications.map((publication) => (
-              <li class="scroll-fade group relative overflow-hidden rounded-2xl border border-transparent bg-white/75 px-3 py-2 dark:bg-slate-900/50">
-                <div
-                  class="pointer-events-none absolute inset-0 z-0 rounded-2xl opacity-0 shadow-[inset_0_0_0_9999px_rgba(235,39,0,0.03)] transition-opacity duration-300 ease-out will-change-[opacity] group-hover:opacity-100 group-hover:duration-200 group-focus-within:opacity-100 dark:shadow-[inset_0_0_0_9999px_rgba(235,39,0,0.2)]"
-                  aria-hidden="true"
-                />
-                <div class="relative z-10 flex flex-col gap-2 md:flex-row md:items-start">
-                  <div class="shrink-0">
-                    <span class="inline-flex rounded-md bg-[rgba(235,39,0,0.08)] px-2.5 py-1 text-sm font-semibold text-[#EB2700] dark:bg-[rgba(235,39,0,0.12)] dark:text-[#EB2700]">
-                      [{publication.conference}]
+              <li class="group transition-colors hover:bg-white/70 dark:hover:bg-white/[0.03]">
+                <div class="grid gap-4 px-5 py-5 md:grid-cols-[7.5rem_1fr] md:gap-6 md:px-7 md:py-6">
+                  <div class="flex items-start">
+                    <span class="inline-flex rounded-lg bg-[rgba(235,39,0,0.08)] px-2.5 py-1 text-xs font-semibold text-accent dark:bg-[rgba(235,39,0,0.14)]">
+                      {publication.conference}
                     </span>
                   </div>
-                  <div class="min-w-0 flex-1">
-                    <div class="flex flex-wrap items-center gap-2">
-                      <h2 class="text-lg font-semibold leading-7 text-heading dark:text-white">{publication.title}</h2>
+                  <div class="min-w-0">
+                    <div class="flex flex-wrap items-start gap-x-3 gap-y-2">
+                      <h3 class="text-base font-semibold leading-7 tracking-tight text-heading md:text-lg dark:text-white">
+                        {publication.title}
+                      </h3>
                       <a
                         href={publication.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center rounded-md border border-transparent px-2.5 py-1 text-sm font-medium text-[#EB2700] transition-colors hover:border-[rgba(235,39,0,0.45)] hover:bg-[rgba(235,39,0,0.06)] focus-visible:border-[rgba(235,39,0,0.45)] focus-visible:bg-[rgba(235,39,0,0.06)] dark:text-[#EB2700] dark:hover:border-[rgba(235,39,0,0.55)] dark:hover:bg-[rgba(235,39,0,0.08)] dark:focus-visible:border-[rgba(235,39,0,0.55)] dark:focus-visible:bg-[rgba(235,39,0,0.08)]"
+                        aria-label={`Read ${publication.title}`}
+                        class="inline-flex shrink-0 items-center gap-1 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium text-accent transition-colors hover:border-[rgba(235,39,0,0.35)] hover:bg-[rgba(235,39,0,0.06)] focus-visible:border-[rgba(235,39,0,0.35)] focus-visible:bg-[rgba(235,39,0,0.06)] focus-visible:outline-none dark:hover:border-[rgba(255,116,89,0.4)] dark:hover:bg-[rgba(235,39,0,0.12)] dark:focus-visible:border-[rgba(255,116,89,0.4)] dark:focus-visible:bg-[rgba(235,39,0,0.12)]"
                       >
-                        [paper]
+                        Paper
+                        <Icon name="tabler:arrow-up-right" class="h-3.5 w-3.5" />
                       </a>
                     </div>
-                    <p class="mt-1 text-sm leading-6 text-slate-700 dark:text-slate-300">{publication.authors}.</p>
+                    <p class="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{publication.authors}.</p>
                   </div>
                 </div>
               </li>
