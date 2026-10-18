@@ -58,7 +58,6 @@ const modelSupport = [
   </Fragment>
 
   <section class="relative -mt-[76px] 2xl:-mt-[85px] not-prose">
-    <div class="hero-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
       <div class="pointer-events-none pt-[76px] 2xl:pt-[85px]"></div>
       <div class="pb-12 pt-10 md:pb-16 md:pt-14 lg:pt-16">
@@ -128,10 +127,7 @@ const modelSupport = [
     </div>
   </section>
 
-  <section
-    id="support"
-    class="not-prose border-y border-neutral-200/70 bg-neutral-50/80 dark:border-neutral-800 dark:bg-neutral-900/40"
-  >
+  <section id="support" class="not-prose border-y border-neutral-200/70 bg-page dark:border-neutral-800">
     <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
       <div class="scroll-fade mx-auto max-w-3xl text-center">
         <p class="text-sm font-semibold uppercase tracking-wide text-accent">Broad Support</p>
@@ -212,7 +208,7 @@ const modelSupport = [
 
   <section id="community" aria-labelledby="community-heading" class="not-prose px-4 pb-16 sm:px-6 md:pb-20">
     <div
-      class="scroll-fade relative mx-auto flex max-w-7xl flex-col gap-8 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-50 p-7 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:p-12 dark:border-neutral-800 dark:bg-neutral-900"
+      class="scroll-fade relative mx-auto flex max-w-7xl flex-col gap-8 overflow-hidden rounded-3xl border border-neutral-200 bg-surface p-7 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:p-12 dark:border-neutral-800"
     >
       <div class="max-w-xl">
         <p class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
@@ -246,13 +242,3 @@ const modelSupport = [
     </div>
   </section>
 </Layout>
-
-<style>
-  .hero-glow {
-    background: radial-gradient(ellipse 36rem 22rem at 60% 8%, rgb(235 39 0 / 0.065), transparent 75%);
-  }
-
-  :global(.dark) .hero-glow {
-    background: radial-gradient(ellipse 36rem 22rem at 60% 8%, rgb(235 39 0 / 0.1), transparent 75%);
-  }
-</style>

@@ -32,7 +32,10 @@ import '@fontsource-variable/inter';
     --aw-color-text-heading: rgb(8 8 8);
     --aw-color-text-default: rgb(8 8 8);
     --aw-color-text-muted: rgb(8 8 8 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
+    /* Match xLLM Docs: Rapide's light palette and docs/src/styles/theme.css. */
+    --aw-color-bg-page: oklch(98% 0.002 17);
+    --aw-color-bg-surface: oklch(96% 0.003 17);
+    --aw-color-bg-header: oklch(98% 0.002 17 / 70%);
 
     --aw-color-bg-page-dark: rgb(8 8 8);
 
@@ -54,6 +57,8 @@ import '@fontsource-variable/inter';
     --aw-color-text-default: rgb(229 229 229);
     --aw-color-text-muted: rgb(229 229 229 / 66%);
     --aw-color-bg-page: rgb(8 8 8);
+    --aw-color-bg-surface: #111111;
+    --aw-color-bg-header: rgb(8 8 8 / 88%);
 
     ::selection {
       background-color: rgb(235 39 0 / 30%);
