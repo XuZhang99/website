@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
 import Header from '~/components/widgets/Header.astro';
 import InferenceFlow from '~/components/widgets/InferenceFlow.astro';
+import SupportGroup from '~/components/widgets/SupportGroup.astro';
 import Button from '~/components/ui/Button.astro';
 import { headerData } from '~/navigation';
 
@@ -33,39 +34,19 @@ const resources = [
 ];
 
 const hardwareSupport = [
-  {
-    name: 'Ascend NPUs',
-  },
-  {
-    name: 'Cambricon MLUs',
-  },
-  {
-    name: 'Iluvatar CoreX GPUs',
-  },
-  {
-    name: 'Moore Threads GPUs',
-  },
+  { name: 'Ascend', detail: 'NPUs', logo: '/images/brands/ascend.png' },
+  { name: 'Cambricon', detail: 'MLUs', logo: '/images/brands/cambricon.ico' },
+  { name: 'Iluvatar CoreX', detail: 'GPUs', logo: '/images/brands/iluvatar.png' },
+  { name: 'Moore Threads', detail: 'GPUs', logo: '/images/brands/moore-threads.png' },
 ];
 
 const modelSupport = [
-  {
-    name: 'DeepSeek',
-  },
-  {
-    name: 'Qwen',
-  },
-  {
-    name: 'Kimi',
-  },
-  {
-    name: 'GLM',
-  },
-  {
-    name: 'Flux',
-  },
-  {
-    name: 'OneRec',
-  },
+  { name: 'DeepSeek', logo: '/images/brands/deepseek.svg' },
+  { name: 'Qwen', logo: '/images/brands/qwen.svg' },
+  { name: 'Kimi', logo: '/images/brands/kimi.svg' },
+  { name: 'GLM', logo: '/images/brands/glm.svg' },
+  { name: 'Flux', logo: '/images/brands/flux.svg' },
+  { name: 'OneRec', monogram: '1R' },
 ];
 ---
 
@@ -160,82 +141,23 @@ const modelSupport = [
         </p>
       </div>
 
-      <div class="scroll-fade-stagger mx-auto mt-8 grid max-w-6xl items-stretch gap-5 lg:grid-cols-2">
-        <article
-          class="flex h-full flex-col rounded-3xl border border-neutral-200/80 bg-white/75 p-6 dark:border-neutral-700 dark:bg-neutral-900/50"
-        >
-          <div class="text-center">
-            <p
-              class="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wide text-accent"
-            >
-              <Icon name="tabler:server-2" class="h-4 w-4" />
-              Supported Hardware
-            </p>
-          </div>
-
-          <ul class="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-            {
-              hardwareSupport.map((item) => (
-                <li class="flex min-h-12 items-center justify-center rounded-[8px] border border-neutral-200/80 bg-neutral-50/80 px-3.5 py-2 text-center shadow-sm dark:border-neutral-700/80 dark:bg-neutral-800/50">
-                  <h4 class="text-base font-semibold leading-snug text-heading dark:text-white">{item.name}</h4>
-                </li>
-              ))
-            }
-          </ul>
-
-          <div class="mt-auto flex justify-center pt-5">
-            <a
-              href="https://docs.xllm-ai.com/en/hardware/overview/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900"
-            >
-              View all supported hardware
-              <Icon
-                name="tabler:arrow-right"
-                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:tranneutral-x-1 group-focus-visible:tranneutral-x-1 motion-reduce:transform-none motion-reduce:transition-none"
-              />
-            </a>
-          </div>
-        </article>
-
-        <article
-          class="flex h-full flex-col rounded-3xl border border-neutral-200/80 bg-white/75 p-6 dark:border-neutral-700 dark:bg-neutral-900/50"
-        >
-          <div class="text-center">
-            <p
-              class="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wide text-accent"
-            >
-              <Icon name="tabler:brain" class="h-4 w-4" />
-              Supported Models
-            </p>
-          </div>
-
-          <ul class="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-            {
-              modelSupport.map((item) => (
-                <li class="flex min-h-12 items-center justify-center rounded-[8px] border border-neutral-200/80 bg-neutral-50/80 px-3.5 py-2 text-center shadow-sm dark:border-neutral-700/80 dark:bg-neutral-800/50">
-                  <h4 class="text-base font-semibold leading-snug text-heading dark:text-white">{item.name}</h4>
-                </li>
-              ))
-            }
-          </ul>
-
-          <div class="mt-auto flex justify-center pt-5">
-            <a
-              href="https://docs.xllm-ai.com/en/supported_models/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900"
-            >
-              View all supported models
-              <Icon
-                name="tabler:arrow-right"
-                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:tranneutral-x-1 group-focus-visible:tranneutral-x-1 motion-reduce:transform-none motion-reduce:transition-none"
-              />
-            </a>
-          </div>
-        </article>
+      <div class="mx-auto mt-10 grid max-w-6xl gap-10 lg:grid-cols-2 lg:gap-0">
+        <SupportGroup
+          title="Supported hardware"
+          icon="tabler:server-2"
+          items={hardwareSupport}
+          href="https://docs.xllm-ai.com/en/hardware/overview/"
+          linkText="View all supported hardware"
+        />
+        <SupportGroup
+          title="Supported models"
+          icon="tabler:brain"
+          items={modelSupport}
+          columns={3}
+          href="https://docs.xllm-ai.com/en/supported_models/"
+          linkText="View all supported models"
+          divided
+        />
       </div>
     </div>
   </section>
