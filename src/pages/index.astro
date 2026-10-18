@@ -75,12 +75,7 @@ const modelSupport = [
   </Fragment>
 
   <section class="relative -mt-[76px] 2xl:-mt-[85px] not-prose">
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(235,39,0,0.16),transparent_50%),radial-gradient(circle_at_80%_22%,rgba(235,39,0,0.16),transparent_52%),linear-gradient(to_bottom,rgba(235,39,0,0.08),rgba(248,250,252,0.92))] dark:bg-[radial-gradient(circle_at_top,rgba(235,39,0,0.18),transparent_50%),radial-gradient(circle_at_80%_22%,rgba(235,39,0,0.18),transparent_52%),linear-gradient(to_bottom,#080808,#080808)]"
-      >
-      </div>
-    </div>
+    <div class="hero-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
       <div class="pointer-events-none pt-[76px] 2xl:pt-[85px]"></div>
       <div class="pb-12 pt-10 md:pb-16 md:pt-14 lg:pt-16">
@@ -117,33 +112,27 @@ const modelSupport = [
         <InferenceFlow />
 
         <div class="scroll-fade-stagger mx-auto mt-12 grid max-w-6xl gap-4 md:grid-cols-3">
-          <div
-            class="rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
-          >
+          <div class="border-t border-neutral-200 px-2 py-6 dark:border-neutral-800">
             <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:circle-check" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
+              <Icon name="tabler:circle-check" class="h-5 w-5 text-accent" />
               Easy
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
               Deploy open models with a unified service-engine stack and production-oriented tooling.
             </p>
           </div>
-          <div
-            class="rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
-          >
+          <div class="border-t border-neutral-200 px-2 py-6 dark:border-neutral-800">
             <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:bolt" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
+              <Icon name="tabler:bolt" class="h-5 w-5 text-accent" />
               Fast
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
               Improve throughput with asynchronous scheduling, graph optimization, and multi-stream execution.
             </p>
           </div>
-          <div
-            class="rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
-          >
+          <div class="border-t border-neutral-200 px-2 py-6 dark:border-neutral-800">
             <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:coins" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
+              <Icon name="tabler:coins" class="h-5 w-5 text-accent" />
               Cost Efficient
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
@@ -156,10 +145,13 @@ const modelSupport = [
     </div>
   </section>
 
-  <section id="support" class="not-prose">
+  <section
+    id="support"
+    class="not-prose border-y border-neutral-200/70 bg-neutral-50/80 dark:border-neutral-800 dark:bg-neutral-900/40"
+  >
     <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
       <div class="scroll-fade mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]">Broad Support</p>
+        <p class="text-sm font-semibold uppercase tracking-wide text-accent">Broad Support</p>
         <h2 class="mt-3 text-2xl font-bold tracking-tight text-heading md:text-3xl dark:text-white">
           Cross-Platform Model & Hardware Support
         </h2>
@@ -170,11 +162,11 @@ const modelSupport = [
 
       <div class="scroll-fade-stagger mx-auto mt-8 grid max-w-6xl items-stretch gap-5 lg:grid-cols-2">
         <article
-          class="flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
+          class="flex h-full flex-col rounded-3xl border border-neutral-200/80 bg-white/75 p-6 dark:border-neutral-700 dark:bg-neutral-900/50"
         >
           <div class="text-center">
             <p
-              class="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]"
+              class="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wide text-accent"
             >
               <Icon name="tabler:server-2" class="h-4 w-4" />
               Supported Hardware
@@ -184,7 +176,7 @@ const modelSupport = [
           <ul class="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
             {
               hardwareSupport.map((item) => (
-                <li class="flex min-h-12 items-center justify-center rounded-[8px] border border-slate-200/80 bg-slate-50/80 px-3.5 py-2 text-center shadow-sm dark:border-slate-700/80 dark:bg-slate-800/50">
+                <li class="flex min-h-12 items-center justify-center rounded-[8px] border border-neutral-200/80 bg-neutral-50/80 px-3.5 py-2 text-center shadow-sm dark:border-neutral-700/80 dark:bg-neutral-800/50">
                   <h4 class="text-base font-semibold leading-snug text-heading dark:text-white">{item.name}</h4>
                 </li>
               ))
@@ -196,23 +188,23 @@ const modelSupport = [
               href="https://docs.xllm-ai.com/en/hardware/overview/"
               target="_blank"
               rel="noopener noreferrer"
-              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900"
             >
               View all supported hardware
               <Icon
                 name="tabler:arrow-right"
-                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
+                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:tranneutral-x-1 group-focus-visible:tranneutral-x-1 motion-reduce:transform-none motion-reduce:transition-none"
               />
             </a>
           </div>
         </article>
 
         <article
-          class="flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
+          class="flex h-full flex-col rounded-3xl border border-neutral-200/80 bg-white/75 p-6 dark:border-neutral-700 dark:bg-neutral-900/50"
         >
           <div class="text-center">
             <p
-              class="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]"
+              class="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wide text-accent"
             >
               <Icon name="tabler:brain" class="h-4 w-4" />
               Supported Models
@@ -222,7 +214,7 @@ const modelSupport = [
           <ul class="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
             {
               modelSupport.map((item) => (
-                <li class="flex min-h-12 items-center justify-center rounded-[8px] border border-slate-200/80 bg-slate-50/80 px-3.5 py-2 text-center shadow-sm dark:border-slate-700/80 dark:bg-slate-800/50">
+                <li class="flex min-h-12 items-center justify-center rounded-[8px] border border-neutral-200/80 bg-neutral-50/80 px-3.5 py-2 text-center shadow-sm dark:border-neutral-700/80 dark:bg-neutral-800/50">
                   <h4 class="text-base font-semibold leading-snug text-heading dark:text-white">{item.name}</h4>
                 </li>
               ))
@@ -234,12 +226,12 @@ const modelSupport = [
               href="https://docs.xllm-ai.com/en/supported_models/"
               target="_blank"
               rel="noopener noreferrer"
-              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900"
             >
               View all supported models
               <Icon
                 name="tabler:arrow-right"
-                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
+                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:tranneutral-x-1 group-focus-visible:tranneutral-x-1 motion-reduce:transform-none motion-reduce:transition-none"
               />
             </a>
           </div>
@@ -251,7 +243,7 @@ const modelSupport = [
   <section id="resources" aria-labelledby="resources-heading" class="not-prose">
     <div class="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1fr_1.5fr] md:gap-16 md:py-20">
       <div class="scroll-fade">
-        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-primary">Resources</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent">Resources</p>
         <h2
           id="resources-heading"
           class="mt-4 text-3xl font-semibold tracking-tight text-heading md:text-4xl dark:text-white"
@@ -263,7 +255,7 @@ const modelSupport = [
         </p>
       </div>
       <ul
-        class="scroll-fade divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800"
+        class="scroll-fade divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800"
       >
         {
           resources.map((resource) => (
@@ -272,9 +264,9 @@ const modelSupport = [
                 href={resource.href}
                 target={resource.href.startsWith('https:') ? '_blank' : undefined}
                 rel={resource.href.startsWith('https:') ? 'noopener noreferrer' : undefined}
-                class="group flex items-center gap-4 rounded-lg px-2 py-6 transition-colors hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary dark:hover:bg-white/5 sm:gap-5"
+                class="group flex items-center gap-4 rounded-lg px-2 py-6 transition-colors hover:bg-neutral-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary dark:hover:bg-white/5 sm:gap-5"
               >
-                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-muted transition-colors group-hover:bg-primary/10 group-hover:text-primary dark:bg-white/5">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-muted transition-colors group-hover:bg-[#EB2700]/10 group-hover:text-primary dark:bg-white/5">
                   <Icon name={resource.icon} class="h-5 w-5" />
                 </span>
                 <div class="flex-1">
@@ -295,10 +287,10 @@ const modelSupport = [
 
   <section id="community" aria-labelledby="community-heading" class="not-prose px-4 pb-16 sm:px-6 md:pb-20">
     <div
-      class="scroll-fade relative mx-auto flex max-w-7xl flex-col gap-8 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-7 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:p-12 dark:border-slate-800 dark:bg-neutral-900"
+      class="scroll-fade relative mx-auto flex max-w-7xl flex-col gap-8 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-50 p-7 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:p-12 dark:border-neutral-800 dark:bg-neutral-900"
     >
       <div class="max-w-xl">
-        <p class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+        <p class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
           <Icon name="tabler:brand-github" class="h-4 w-4" /> Community
         </p>
         <h2
@@ -329,3 +321,13 @@ const modelSupport = [
     </div>
   </section>
 </Layout>
+
+<style>
+  .hero-glow {
+    background: radial-gradient(ellipse 36rem 22rem at 60% 8%, rgb(235 39 0 / 0.065), transparent 75%);
+  }
+
+  :global(.dark) .hero-glow {
+    background: radial-gradient(ellipse 36rem 22rem at 60% 8%, rgb(235 39 0 / 0.1), transparent 75%);
+  }
+</style>
