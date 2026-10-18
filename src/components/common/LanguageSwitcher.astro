@@ -49,6 +49,32 @@ const languageLinks = (['en', 'zh'] as const).map((locale) => ({
 </details>
 
 <script>
+  function syncLanguageLinks() {
+    const { search, hash } = window.location;
+
+    document.querySelectorAll<HTMLAnchorElement>('.language-options a').forEach((link) => {
+      const url = new URL(link.href, window.location.href);
+      url.search = search;
+      url.hash = hash;
+      link.setAttribute('href', `${url.pathname}${url.search}${url.hash}`);
+    });
+  }
+
+  // Astro.url is captured at build time, so keep runtime search/fragment in sync.
+  syncLanguageLinks();
+  document.addEventListener('astro:page-load', syncLanguageLinks);
+  window.addEventListener('hashchange', syncLanguageLinks);
+  window.addEventListener('popstate', syncLanguageLinks);
+
+  document.addEventListener(
+    'click',
+    (event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest('.language-options a')) syncLanguageLinks();
+    },
+    true
+  );
+
   document.addEventListener('click', (event) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
