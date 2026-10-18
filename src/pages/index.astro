@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
 import Header from '~/components/widgets/Header.astro';
+import InferenceFlow from '~/components/widgets/InferenceFlow.astro';
 import Button from '~/components/ui/Button.astro';
 import { headerData } from '~/navigation';
 
@@ -91,6 +92,8 @@ const modelSupport = [
             <Button text="Explore support" href="#support" icon="tabler:arrow-down" />
           </div>
         </div>
+
+        <InferenceFlow />
 
         <div class="scroll-fade-stagger mx-auto mt-12 grid max-w-6xl gap-4 md:grid-cols-3">
           <div
