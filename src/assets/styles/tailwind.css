@@ -22,19 +22,19 @@
 
 @layer components {
   .card-hover {
-    @apply transform-gpu hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(235,39,0,0.16)] dark:hover:shadow-[0_18px_42px_rgba(235,39,0,0.16)];
+    @apply motion-safe:hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(0,0,0,0.06)] motion-reduce:transition-none;
     transition-property: transform, box-shadow, border-color, background-color, color;
     transition-duration: 320ms;
     transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: transform, box-shadow;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center rounded-2xl border-gray-300 border bg-transparent font-medium text-center text-sm text-page leading-snug py-2.5 px-5 md:px-6 transition-all ease-out duration-200 focus:ring-[#EB2700] focus:ring-offset-[#EB2700]/20 focus:ring-2 focus:ring-offset-2 hover:scale-[1.08] hover:bg-gray-100 hover:border-gray-500 hover:shadow-[0_18px_42px_rgba(235,39,0,0.16)] dark:text-slate-300 dark:border-slate-600 dark:hover:bg-slate-800 dark:hover:border-slate-700 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-transparent font-medium text-center text-sm text-default leading-snug py-3 px-5 md:px-6 ease-out duration-200 focus-visible:outline-none focus-visible:ring-[#EB2700] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-safe:hover:-translate-y-0.5 hover:bg-neutral-50 hover:border-neutral-400 hover:shadow-sm dark:text-neutral-200 dark:border-neutral-700 dark:hover:bg-neutral-900 dark:hover:border-neutral-500 dark:focus-visible:ring-offset-neutral-950 motion-reduce:transition-none cursor-pointer;
+    transition-property: transform, background-color, border-color, box-shadow, color;
   }
 
   .btn-primary {
-    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
+    @apply btn font-semibold bg-[#d92708] text-white border-[#d92708] hover:bg-[#bd2105] hover:border-[#bd2105] hover:text-white dark:text-white dark:bg-[#d92708] dark:border-[#d92708] dark:hover:border-[#bd2105] dark:hover:bg-[#bd2105];
   }
 
   .btn-secondary {
@@ -54,15 +54,14 @@
   .js-enabled .scroll-fade,
   .js-enabled .scroll-fade-stagger > * {
     opacity: 0;
-    translate: 0 1.75rem;
+    translate: 0 0.75rem;
     transition-property: opacity, translate, transform, box-shadow, border-color, background-color, color;
-    transition-duration: 680ms, 680ms, 320ms, 320ms, 240ms, 240ms, 240ms;
+    transition-duration: 460ms, 460ms, 200ms, 200ms, 240ms, 240ms, 240ms;
     transition-timing-function:
       cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1),
       cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1),
       cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--scroll-fade-delay, 0ms), var(--scroll-fade-delay, 0ms), 0ms, 0ms, 0ms, 0ms, 0ms;
-    will-change: opacity, translate, transform, box-shadow;
   }
 
   .js-enabled .scroll-fade.is-visible,
@@ -80,6 +79,12 @@
 @media (prefers-reduced-motion: reduce) {
   body {
     animation: none;
+  }
+
+  .btn,
+  .card-hover {
+    transform: none;
+    transition: none;
   }
 
   .scroll-fade,
