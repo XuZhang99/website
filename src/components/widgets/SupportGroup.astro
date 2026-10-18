@@ -3,7 +3,6 @@ import { Icon } from 'astro-icon/components';
 
 interface SupportItem {
   name: string;
-  detail?: string;
   logo?: string;
   monogram?: string;
 }
@@ -53,7 +52,6 @@ const { title, icon, items, href, linkText, columns = 2, divided = false } = Ast
             )}
           </span>
           <p class="text-sm font-semibold leading-snug text-heading dark:text-white">{item.name}</p>
-          {item.detail && <p class="mt-0.5 font-mono text-xs text-muted">{item.detail}</p>}
         </li>
       ))
     }
