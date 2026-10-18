@@ -1,33 +1,100 @@
 ---
 import { UI } from 'astrowind:config';
-
-// TODO: This code is temporary
 ---
 
 <script is:inline define:vars={{ defaultTheme: UI.theme || 'system' }}>
-  function applyTheme(theme) {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    const matches = document.querySelectorAll('[data-aw-toggle-color-scheme] > input');
+  (function () {
+    const root = document.documentElement;
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const forcedTheme = defaultTheme.endsWith(':only') ? defaultTheme.replace(':only', '') : null;
+    const fallbackTheme = !forcedTheme && defaultTheme !== 'system' ? defaultTheme : null;
+    let memoryTheme = null;
+    let hasMemoryTheme = false;
 
-    if (matches && matches.length) {
-      matches.forEach((elem) => {
-        elem.checked = theme !== 'dark';
+    function readStoredTheme() {
+      if (hasMemoryTheme) return memoryTheme;
+
+      try {
+        const theme = window.localStorage.getItem('theme');
+        return theme === 'dark' || theme === 'light' ? theme : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function storeTheme(theme) {
+      memoryTheme = theme === 'system' ? null : theme;
+      hasMemoryTheme = true;
+
+      try {
+        if (theme === 'system') {
+          window.localStorage.removeItem('theme');
+        } else {
+          window.localStorage.setItem('theme', theme);
+        }
+      } catch {
+        // Storage can be unavailable (e.g. private browsing); memoryTheme keeps the in-page theme.
+      }
+    }
+
+    function getPreference() {
+      if (forcedTheme) return forcedTheme;
+      return readStoredTheme() || fallbackTheme || 'system';
+    }
+
+    function resolveTheme() {
+      const preference = getPreference();
+      return preference === 'system' ? (darkModeQuery.matches ? 'dark' : 'light') : preference;
+    }
+
+    function applyTheme(theme) {
+      const isDark = theme === 'dark';
+
+      root.classList.toggle('dark', isDark);
+      root.style.colorScheme = theme;
+
+      document.querySelectorAll('[data-aw-toggle-color-scheme] > input').forEach((input) => {
+        input.checked = !isDark;
+      });
+
+      document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+        meta.setAttribute('content', isDark ? '#080808' : '#ffffff');
       });
     }
-  }
 
-  if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
-    applyTheme(defaultTheme.replace(':only', ''));
-  } else if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
-    applyTheme('dark');
-  } else {
-    applyTheme('light');
-  }
+    function syncTheme() {
+      applyTheme(resolveTheme());
+    }
+
+    function setTheme(theme) {
+      if (forcedTheme) return;
+
+      // Choosing the theme the system is already using returns the site to
+      // automatic mode, so it keeps following future system appearance changes.
+      const systemTheme = darkModeQuery.matches ? 'dark' : 'light';
+      storeTheme(theme !== 'system' && theme === systemTheme && !fallbackTheme ? 'system' : theme);
+      syncTheme();
+    }
+
+    function toggleTheme() {
+      setTheme(resolveTheme() === 'dark' ? 'light' : 'dark');
+    }
+
+    window.__xllmTheme = { sync: syncTheme, toggle: toggleTheme };
+
+    syncTheme();
+
+    function onSystemThemeChange() {
+      if (getPreference() === 'system') syncTheme();
+    }
+
+    if (typeof darkModeQuery.addEventListener === 'function') {
+      darkModeQuery.addEventListener('change', onSystemThemeChange);
+    } else {
+      darkModeQuery.onchange = onSystemThemeChange;
+    }
+
+    document.addEventListener('astro:after-swap', syncTheme);
+    window.addEventListener('pageshow', syncTheme);
+  })();
 </script>

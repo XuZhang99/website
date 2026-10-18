@@ -149,10 +149,7 @@ const localeText = localeMeta[locale];
         <div class="flex">
           {
             showToggleTheme && (
-              <ToggleTheme
-                label={locale === 'zh' ? '切换深色/浅色模式' : 'Toggle between Dark and Light mode'}
-                iconClass="w-6 h-6 md:w-5 md:h-5"
-              />
+              <ToggleTheme label={locale === 'zh' ? '切换深色/浅色模式' : 'Toggle between Dark and Light mode'} />
             )
           }
           <LanguageSwitcher locale={locale} />
