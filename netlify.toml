@@ -1,0 +1,34 @@
+# Netlify native continuous deployment, used for pull request previews.
+#
+# Production remains on GitHub Pages (see .github/workflows/deploy.yml).
+# Netlify builds each pull request in its own sandbox, so Deploy Previews work
+# for pull requests from forks without exposing GitHub Actions secrets.
+#
+# Dashboard setup (one-time, by a repository maintainer):
+#   1. Link xLLM-AI/xllm-website to a Netlify site through the Netlify GitHub App.
+#   2. Ensure Deploy Previews for pull requests are enabled (the default).
+#   3. For automatic fork previews, set the sensitive variable policy to
+#      "Deploy without sensitive variables". This site needs no build secrets.
+#
+# Netlify reads this file from the pull request head, so changes here can be
+# tested in that PR's Deploy Preview before merging.
+
+[build]
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+  # Production remains on GitHub Pages. Skip Netlify production builds so
+  # merges to main do not create an unused production deploy (15 credits each
+  # on credit-based plans). Pull request previews run with
+  # CONTEXT=deploy-preview, so they still build.
+  ignore = 'test "$CONTEXT" = "production"'
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Keep the preview-only Netlify site out of search indexes. This file is not
+# part of the Astro build output, so GitHub Pages production is unaffected.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
