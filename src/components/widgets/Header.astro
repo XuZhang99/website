@@ -52,6 +52,9 @@ const {
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 const localeText = localeMeta[locale];
+const isNetlifyPreview = process.env.CONTEXT === 'deploy-preview';
+const previewLabel = locale === 'zh' ? 'PR 预览' : 'PR preview';
+const previewTitle = locale === 'zh' ? '这是 Netlify PR 预览站点' : 'This site is a Netlify PR preview';
 
 const starsByRepo = new Map<string, number | undefined>();
 
@@ -98,9 +101,18 @@ const isCurrentHref = (href?: string) => {
     ]}
   >
     <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
-      <a class="flex items-center" href={locale === 'zh' ? getPermalink('/zh') : getHomePermalink()}>
-        <Logo />
-      </a>
+      <div class="flex items-center gap-2">
+        <a class="flex items-center" href={locale === 'zh' ? getPermalink('/zh') : getHomePermalink()}>
+          <Logo />
+        </a>
+        {
+          isNetlifyPreview && (
+            <span class="preview-badge" title={previewTitle}>
+              {previewLabel}
+            </span>
+          )
+        }
+      </div>
       <div class="flex items-center md:hidden">
         <ToggleMenu label={localeText.menuLabel} />
       </div>
@@ -224,6 +236,21 @@ const isCurrentHref = (href?: string) => {
   .header-nav {
     margin-block: -0.3rem;
     padding-block: 0.3rem;
+  }
+
+  .preview-badge {
+    align-self: center;
+    background: var(--aw-color-primary);
+    border-radius: 999px;
+    color: #fff;
+    flex: none;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    padding: 0.3rem 0.5rem;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   /* Matches the top navigation pills on docs.xllm-ai.com. */
