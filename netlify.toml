@@ -6,10 +6,9 @@
 #
 # Dashboard setup (one-time, by a repository maintainer):
 #   1. Link xLLM-AI/xllm-website to a Netlify site through the Netlify GitHub App.
-#   2. Enable Deploy Previews for pull requests.
-#   3. If the site is only used for previews, stop automatic builds for the
-#      production branch so merges to main do not create an unused production
-#      deploy (15 credits each on credit-based plans).
+#   2. Ensure Deploy Previews for pull requests are enabled (the default).
+#   3. For automatic fork previews, set the sensitive variable policy to
+#      "Deploy without sensitive variables". This site needs no build secrets.
 #
 # Netlify reads this file from the pull request head, so changes here can be
 # tested in that PR's Deploy Preview before merging.
@@ -17,6 +16,12 @@
 [build]
   command = "npm ci && npm run build"
   publish = "dist"
+
+  # Production remains on GitHub Pages. Skip Netlify production builds so
+  # merges to main do not create an unused production deploy (15 credits each
+  # on credit-based plans). Pull request previews run with
+  # CONTEXT=deploy-preview, so they still build.
+  ignore = 'test "$CONTEXT" = "production"'
 
 [build.environment]
   NODE_VERSION = "22"
