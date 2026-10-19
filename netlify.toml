@@ -1,0 +1,22 @@
+# Netlify native continuous deployment, used for pull request previews.
+#
+# Production remains on GitHub Pages (see .github/workflows/deploy.yml).
+# Netlify builds each pull request in its own sandbox, so Deploy Previews work
+# for pull requests from forks without exposing GitHub Actions secrets.
+#
+# Dashboard setup (one-time, by a repository maintainer):
+#   1. Link xLLM-AI/xllm-website to a Netlify site through the Netlify GitHub App.
+#   2. Enable Deploy Previews for pull requests.
+#   3. If the site is only used for previews, stop automatic builds for the
+#      production branch so merges to main do not create an unused production
+#      deploy (15 credits each on credit-based plans).
+#
+# Netlify reads this file from the pull request head, so changes here can be
+# tested in that PR's Deploy Preview before merging.
+
+[build]
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
