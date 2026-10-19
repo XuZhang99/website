@@ -25,3 +25,10 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Keep the preview-only Netlify site out of search indexes. This file is not
+# part of the Astro build output, so GitHub Pages production is unaffected.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
