@@ -55,6 +55,11 @@ publications:
     conference: ICML 26
     authors: >-
       Ben Wan, Yan Feng, Zihan Tang, Weizhe Huang, Yuting Zeng, Jia Wang, Tongxuan Liu
+  - title: 'Janus: Multi-LLM Serving at Production Scale'
+    link: https://doi.org/10.1145/3830418.3843867
+    conference: SOSP 26
+    authors: >-
+      Tianbao Zhou, Yi Wang, Yu Zhou, Zirui Liu, Zhiming Wang, Yebo Peng, Yongfu Wang, Yi Zhang, Jinrun Yin, Kemeng Tian, Fangcheng Fu, Tongxuan Liu, Tao Peng, Tong Yang, Bin Cui, Xupeng Miao, Ke Zhang
 ---
 
 Publication data consumed by `src/pages/publications.astro`.
